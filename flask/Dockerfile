@@ -2,6 +2,7 @@ FROM tiangolo/uwsgi-nginx:latest
 
 MAINTAINER YUX <yu.xiao.fr@gmail.com>
 
+RUN pip install --upgrade pip
 RUN pip install flask
 RUN pip install requests
 
