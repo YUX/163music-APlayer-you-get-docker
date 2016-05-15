@@ -5,6 +5,21 @@
     <title>{{s}}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='s/style.css') }}">
 	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"> 
+  	<link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  	<style>
+  		.button {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+  	</style>
   </head>
 
   <body>
@@ -14,34 +29,23 @@
 
 			{% for k in range(songs_lens) %}
 			<li>
-			<a href="/song/{{sids[k]}}">
-				<h3>{{stitles[k]}}</h3>
-			</a>
-
+				<h3>{{stitles[k]}}
+				<button class="button" type="button" onClick="window.open('/song/{{sids[k]}}')"><i class="fa fa-headphones" aria-hidden="true"></i></button></h3>
 				<p>{{sstitles[k]}}</p>
-
 			</li>
 			{% endfor %}
 
 			{% for k in range(albums_lens) %}
 			<li>
-			<a href="/album/{{sids[k]}}">
-				<h3>{{stitles[k]}}</h3>
-			</a>
-
+				<h3>{{stitles[k]}}<button class="button" type="button" onClick="window.open('/album/{{sids[k]}}')"><i class="fa fa-headphones" aria-hidden="true"></i></button></h3>
 				<p>{{sstitles[k]}}</p>
-
 			</li>
 			{% endfor %}
 
 			{% for k in range(playlists_lens) %}
 			<li>
-			<a href="/playlist/{{sids[k]}}">
-				<h3>{{stitles[k]}}</h3>
-			</a>
-
+				<h3>{{stitles[k]}}<button class="button" type="button" onClick="window.open('/playlist/{{sids[k]}}')"><i class="fa fa-headphones" aria-hidden="true"></i></button></h3>
 				<p>{{sstitles[k]}}</p>
-
 			</li>
 			{% endfor %}
 

@@ -192,11 +192,13 @@ def album_info_get(album_id):
 
 @app.errorhandler(404)
 def page_not_found(e):
-  return redirect("https://yux.io/2016/05/15/163music/#Error")
+    print "400"
+    return redirect("https://yux.io/2016/05/15/163music/#Error")
 
 @app.errorhandler(500)
 def internal_server_error(e):
-  return redirect("https://yux.io/2016/05/15/163music/#Error")
+    print "500"
+    return redirect("https://yux.io/2016/05/15/163music/#Error")
 
 
 if __name__ == '__main__':
