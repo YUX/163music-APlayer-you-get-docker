@@ -2,9 +2,9 @@
 import requests
 import hashlib
 import base64
-from flask import Flask, render_template, url_for, redirect
+from flask import Flask, render_template, url_for, redirect, request
 app = Flask(__name__)
-app.debug = False
+app.debug = True
 
 
 def netease_hymn():
@@ -38,7 +38,63 @@ def make_url(songNet, dfsId):
 
 @app.route('/')
 def hello_world():
-    return redirect("http://yux-io.github.io/163music-APlayer-you-get-docker/")
+    return render_template("index.html")
+
+@app.route('/s', methods=['GET', 'POST'])
+def s():
+    if request.method == 'POST':
+        s = request.form['s']
+        s_type = request.form['type']
+
+        sids = []
+        stitles = []
+        sstitles = []
+
+        songs_lens = 0
+        albums_lens = 0
+        playlists_lens = 0
+
+        l = requests.post("http://music.163.com/api/search/get/",{'s':s,'limit':100,'sub':'false','type':s_type,'offset':0}, headers={"Referer": "http://music.163.com/"}).json()["result"]
+
+        if s_type == str(1):
+            l = l["songs"]
+            for r in l:
+                try:
+                    sids.append(r["id"])
+                    stitles.append(r["name"])
+                    sstitles.append(r["album"]["name"]+" - "+r["artists"][0]["name"])
+                except:
+                    pass
+            songs_lens = len(sids)
+           
+
+        elif s_type == str(10):
+            l = l["albums"]
+            for r in l:
+                sids.append(r["id"])
+                stitles.append(r["name"])
+                sstitles.append(r["artists"][0]["name"])
+            albums_lens = len(sids)
+        elif s_type == str(100):
+            aid = l["artists"][0]["id"]
+            l = requests.get("http://music.163.com/api/artist/albums/%s?offset=0&limit=50"%aid, headers={"Referer": "http://music.163.com/"}).json()["hotAlbums"]
+            for r in l:
+                sids.append(r["id"])
+                stitles.append(r["name"])
+                sstitles.append(r["artists"][0]["name"])
+            albums_lens = len(sids)
+        else:
+            l = l["playlists"]
+            for r in l:
+                sids.append(r["id"])
+                stitles.append(r["name"]+"("+str(r["trackCount"])+")")
+                sstitles.append("by"+r["creator"]["nickname"])
+            playlists_lens = len(sids)
+        
+        return render_template('s.html',sids=sids,stitles=stitles,sstitles=sstitles,songs_lens=songs_lens,albums_lens=albums_lens,playlists_lens=playlists_lens,s=s)
+
+    if request.method == 'GET':
+        return redirect("/")
 
 @app.route('/song/<int:song_id>')
 def song_player(song_id):

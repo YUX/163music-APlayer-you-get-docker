@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>{{s}}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='s/style.css') }}">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"> 
+  </head>
+
+  <body>
+    <div class="page-scroller">
+	<div class="list-wrapper">
+		<ul class="list">
+
+			{% for k in range(songs_lens) %}
+			<li>
+			<a href="/song/{{sids[k]}}">
+				<h3>{{stitles[k]}}</h3>
+			</a>
+
+				<p>{{sstitles[k]}}</p>
+
+			</li>
+			{% endfor %}
+
+			{% for k in range(albums_lens) %}
+			<li>
+			<a href="/album/{{sids[k]}}">
+				<h3>{{stitles[k]}}</h3>
+			</a>
+
+				<p>{{sstitles[k]}}</p>
+
+			</li>
+			{% endfor %}
+
+			{% for k in range(playlists_lens) %}
+			<li>
+			<a href="/playlist/{{sids[k]}}">
+				<h3>{{stitles[k]}}</h3>
+			</a>
+
+				<p>{{sstitles[k]}}</p>
+
+			</li>
+			{% endfor %}
+
+		</ul>
+	</div>
+</div>
+
+<div class="page-wrapper">
+</div>
+    <script src="{{ url_for('static', filename='s/iscroll-probe.min.js') }}"></script>
+
+        <script src="{{ url_for('static', filename='s/index.js') }}"></script>
+
+  </body>
+</html>
