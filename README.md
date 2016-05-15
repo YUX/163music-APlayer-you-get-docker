@@ -13,7 +13,7 @@
 - [v2ex](https://v2ex.com)
 
 # Demo
-[http://music.daoapp.io/s](http://music.daoapp.io/)
+[http://music.daoapp.io/](http://music.daoapp.io/)
 
 # Screenshot
 ![](https://ws4.sinaimg.cn/large/863bb56fgw1f3w7nsvwy3j20qc09kq30.jpg)
