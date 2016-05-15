@@ -4,7 +4,7 @@ import hashlib
 import base64
 from flask import Flask, render_template, url_for, redirect, request
 app = Flask(__name__)
-app.debug = True
+app.debug = False
 
 
 def netease_hymn():
@@ -71,24 +71,33 @@ def s():
         elif s_type == str(10):
             l = l["albums"]
             for r in l:
-                sids.append(r["id"])
-                stitles.append(r["name"])
-                sstitles.append(r["artists"][0]["name"])
+                try:
+                    sids.append(r["id"])
+                    stitles.append(r["name"])
+                    sstitles.append(r["artists"][0]["name"])
+                except:
+                    pass
             albums_lens = len(sids)
         elif s_type == str(100):
             aid = l["artists"][0]["id"]
             l = requests.get("http://music.163.com/api/artist/albums/%s?offset=0&limit=50"%aid, headers={"Referer": "http://music.163.com/"}).json()["hotAlbums"]
             for r in l:
-                sids.append(r["id"])
-                stitles.append(r["name"])
-                sstitles.append(r["artists"][0]["name"])
+                try:
+                    sids.append(r["id"])
+                    stitles.append(r["name"])
+                    sstitles.append(r["artists"][0]["name"])
+                except:
+                    pass
             albums_lens = len(sids)
         else:
             l = l["playlists"]
             for r in l:
-                sids.append(r["id"])
-                stitles.append(r["name"]+"("+str(r["trackCount"])+")")
-                sstitles.append("by"+r["creator"]["nickname"])
+                try:
+                    sids.append(r["id"])
+                    stitles.append(r["name"]+"("+str(r["trackCount"])+")")
+                    sstitles.append("by"+r["creator"]["nickname"])
+                except:
+                    pass
             playlists_lens = len(sids)
         
         return render_template('s.html',sids=sids,stitles=stitles,sstitles=sstitles,songs_lens=songs_lens,albums_lens=albums_lens,playlists_lens=playlists_lens,s=s)
@@ -183,11 +192,11 @@ def album_info_get(album_id):
 
 @app.errorhandler(404)
 def page_not_found(e):
-  return redirect("http://yux-io.github.io/163music-APlayer-you-get-docker/")
+  return redirect("https://yux.io/2016/05/15/163music/")
 
 @app.errorhandler(500)
 def internal_server_error(e):
-  return redirect("http://yux-io.github.io/163music-APlayer-you-get-docker/")
+  return redirect("https://yux.io/2016/05/15/163music/")
 
 
 if __name__ == '__main__':
