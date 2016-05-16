@@ -37,7 +37,7 @@ def make_url(songNet, dfsId):
     return mp3_url
 
 def song_info_get(song_id):
-    r = requests.get('http://music.163.com/api/song/detail/?id=%s&ids=[%s]&csrf_token='%(song_id,song_id),headers={"Referer": "http://music.163.com/"}).json()["songs"][0] 
+    r = requests.get('http://music.163.com/api/song/detail/?id=%s&ids=[%s]&csrf_token='%(song_id,song_id),headers={"Referer": "http://music.163.com/"}).json()["songs"][0]
     songNet = 'p'+r["mp3Url"].split('/')[2][1:]
     if 'hMusic' in r and r['hMusic'] != None:
         dfsId = r["hMusic"]["dfsId"]
@@ -119,7 +119,7 @@ def s():
                 except:
                     pass
             songs_lens = len(sids)
-           
+
 
         elif s_type == str(10):
             l = l["albums"]
@@ -152,7 +152,7 @@ def s():
                 except:
                     pass
             playlists_lens = len(sids)
-        
+
         return render_template('s.html',sids=sids,stitles=stitles,sstitles=sstitles,songs_lens=songs_lens,albums_lens=albums_lens,playlists_lens=playlists_lens,s=s)
 
     if request.method == 'GET':
@@ -165,7 +165,7 @@ def song_player(song_id):
     artist = song_info[1]
     pic_url = song_info[2]
     song_url = song_info[3]
-    lyrics = requests.get('http://music.163.com/api/song/lyric/?id=%s&lv=-1&csrf_token='%(song_id),headers={"Referer": "http://music.163.com/"}).json()["lrc"]["lyric"].replace(" ","").replace("\n","\\n")
+    lyrics = requests.get('http://music.163.com/api/song/lyric/?id=%s&lv=-1&csrf_token='%(song_id),headers={"Referer": "http://music.163.com/"}).json()["lrc"]["lyric"].replace("\n","\\n")
     return render_template("song.html",song_name=song_name,artist=artist,pic_url=pic_url,song_url=song_url,lyrics=lyrics)
 
 @app.route('/playlist/<int:playlist_id>')
