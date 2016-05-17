@@ -2,10 +2,10 @@
 import requests
 import hashlib
 import base64
-from flask import Flask, render_template, url_for, redirect, request
+import re
+from flask import Flask, render_template, url_for, redirect, request, abort
 app = Flask(__name__)
 app.debug = False
-
 
 def netease_hymn():
     return """
@@ -36,58 +36,114 @@ def make_url(songNet, dfsId):
     mp3_url = "http://%s/%s/%s.mp3" % (songNet, encId, dfsId)
     return mp3_url
 
-def song_info_get(song_id):
-    r = requests.get('http://music.163.com/api/song/detail/?id=%s&ids=[%s]&csrf_token='%(song_id,song_id),headers={"Referer": "http://music.163.com/"}).json()["songs"][0]
-    songNet = 'p'+r["mp3Url"].split('/')[2][1:]
-    if 'hMusic' in r and r['hMusic'] != None:
-        dfsId = r["hMusic"]["dfsId"]
+def song_info_get(song_id,qssl,qlrc):
+    r = requests.get('http://music.163.com/api/song/detail/?id=%s&ids=[%s]&csrf_token='%(song_id,song_id),headers={"Referer": "http://music.163.com/"}).json()["songs"]
+    if r == []:
+        code = 404
+        return code
+    elif not r[0]["mp3Url"]:
+        code = 403
+        return 403
     else:
-        dfsId = r["bMusic"]["dfsId"]
-    song_url = make_url(songNet,dfsId)
-    song_name = r["name"]
-    pic_url = r["album"]["blurPicUrl"]
-    artist = r["artists"][0]["name"]
-    return [song_name,artist,pic_url,song_url]
-
-def playlist_info_get(playlist_id):
-    l = requests.get("http://music.163.com/api/playlist/detail?id=%s&csrf_token=" % playlist_id, headers={"Referer": "http://music.163.com/"}).json()["result"]
-    song_names=[]
-    artists=[]
-    pic_urls=[]
-    song_urls=[]
-    for r in l["tracks"]:
+        code = 200
+        r = r[0]
         songNet = 'p'+r["mp3Url"].split('/')[2][1:]
         if 'hMusic' in r and r['hMusic'] != None:
             dfsId = r["hMusic"]["dfsId"]
         else:
             dfsId = r["bMusic"]["dfsId"]
-        song_urls.append(make_url(songNet,dfsId))
-        song_names.append(r["name"])
-        pic_urls.append(r["album"]["blurPicUrl"])
-        artists.append(r["artists"][0]["name"])
+        song_url = make_url(songNet,dfsId)
+        song_name = r["name"]
+        pic_url = r["album"]["blurPicUrl"]
+        artist = r["artists"][0]["name"]
+        if qssl:
+            song_url = song_url.replace("http://","https://gossl.daoapp.io/")
+            pic_url = pic_url.replace("http://","https://gossl.daoapp.io/")
+        else:
+            pass
+        if qlrc:
+            lyrics = requests.get('http://music.163.com/api/song/lyric/?id=%s&lv=-1&csrf_token='%(song_id),headers={"Referer": "http://music.163.com/"}).json()["lrc"]["lyric"].replace("\n","\\n")
+        else:
+            lyrics = 0
+        return [code,song_name,artist,song_url,pic_url,lyrics]
+
+def playlist_info_get(playlist_id,qssl):
+    l = requests.get("http://music.163.com/api/playlist/detail?id=%s&csrf_token=" % playlist_id, headers={"Referer": "http://music.163.com/"}).json()
+    if l["code"] != 200:
+        code = l["code"]
+        return code
+    else:
+        l = l["result"]
+    codes = []
     playlist_name = l["name"]
-    return [song_names,artists,pic_urls,song_urls,playlist_name]
+    song_names = []
+    artists = []
+    song_urls = []
+    pic_urls = []
+    lyricss = []
+    for r in l["tracks"]:
+        try:
+            code = 200
+            songNet = 'p'+r["mp3Url"].split('/')[2][1:]
+            if 'hMusic' in r and r['hMusic'] != None:
+                dfsId = r["hMusic"]["dfsId"]
+            else:
+                dfsId = r["bMusic"]["dfsId"]
+            song_url = make_url(songNet,dfsId)
+            song_name = r["name"]
+            song_id = r["id"]
+            pic_url = r["album"]["blurPicUrl"]
+            artist = r["artists"][0]["name"]
+            if qssl:
+                song_url = song_url.replace("http://","https://gossl.daoapp.io/")
+                pic_url = pic_url.replace("http://","https://gossl.daoapp.io/")
+            else:
+                pass
+            song_names.append(song_name)
+            artists.append(artist)
+            song_urls.append(song_url)
+            pic_urls.append(pic_url)
+        except:
+            pass
+    return [code,codes,playlist_name,song_names,artists,song_urls,pic_urls]
 
-def album_info_get(album_id):
-    l = requests.get("http://music.163.com/api/album/%s?id=%s&csrf_token=" % (album_id, album_id), headers={"Referer": "http://music.163.com/"}).json()["album"]
+def album_info_get(album_id,qssl):
+    l = requests.get("http://music.163.com/api/album/%s?id=%s&csrf_token=" % (album_id, album_id), headers={"Referer": "http://music.163.com/"}).json()
+    if l["code"] != 200:
+        code = l["code"]
+    else:
+        l = l["album"]
+    codes = []
+    album_name = l["name"]
     song_names=[]
     artists=[]
-    pic_urls=[]
     song_urls=[]
+    pic_urls=[]
     for r in l["songs"]:
-        songNet = 'p'+r["mp3Url"].split('/')[2][1:]
-        if 'hMusic' in r and r['hMusic'] != None:
-            dfsId = r["hMusic"]["dfsId"]
-        else:
-            dfsId = r["bMusic"]["dfsId"]
-        song_urls.append(make_url(songNet,dfsId))
-        song_names.append(r["name"])
-        pic_urls.append(r["album"]["blurPicUrl"])
-        artists.append(r["artists"][0]["name"])
-    album_name = l["name"]
-    artist_name = l["artist"]["name"]
-    return [song_names,artists,pic_urls,song_urls,album_name,artist_name]
-
+        try:
+            code = 200
+            songNet = 'p'+r["mp3Url"].split('/')[2][1:]
+            if 'hMusic' in r and r['hMusic'] != None:
+                dfsId = r["hMusic"]["dfsId"]
+            else:
+                dfsId = r["bMusic"]["dfsId"]
+            song_url = make_url(songNet,dfsId)
+            song_name = r["name"]
+            song_id = r["id"]
+            pic_url = r["album"]["blurPicUrl"]
+            artist = r["artists"][0]["name"]
+            if qssl:
+                song_url = song_url.replace("http://","https://gossl.daoapp.io/")
+                pic_url = pic_url.replace("http://","https://gossl.daoapp.io/")
+            else:
+                pass
+            song_names.append(song_name)
+            artists.append(artist)
+            song_urls.append(song_url)
+            pic_urls.append(pic_url)
+        except:
+            pass
+    return [code,codes,album_name,song_names,artists,song_urls,pic_urls]
 
 @app.route('/')
 def hello_world():
@@ -112,35 +168,44 @@ def s():
         if s_type == str(1):
             l = l["songs"]
             for r in l:
-                try:
-                    sids.append(r["id"])
-                    stitles.append(r["name"])
-                    sstitles.append(r["album"]["name"]+" - "+r["artists"][0]["name"])
-                except:
+                if r["status"]<0:
                     pass
+                else:
+                    try:
+                        sids.append(r["id"])
+                        stitles.append(r["name"])
+                        sstitles.append(r["album"]["name"]+" - "+r["artists"][0]["name"])
+                    except:
+                        pass
             songs_lens = len(sids)
 
 
         elif s_type == str(10):
             l = l["albums"]
             for r in l:
-                try:
-                    sids.append(r["id"])
-                    stitles.append(r["name"])
-                    sstitles.append(r["artists"][0]["name"])
-                except:
+                if r["status"]<0:
                     pass
+                else:
+                    try:
+                        sids.append(r["id"])
+                        stitles.append(r["name"])
+                        sstitles.append(r["artists"][0]["name"])
+                    except:
+                        pass
             albums_lens = len(sids)
         elif s_type == str(100):
             aid = l["artists"][0]["id"]
             l = requests.get("http://music.163.com/api/artist/albums/%s?offset=0&limit=50"%aid, headers={"Referer": "http://music.163.com/"}).json()["hotAlbums"]
             for r in l:
-                try:
-                    sids.append(r["id"])
-                    stitles.append(r["name"])
-                    sstitles.append(r["artists"][0]["name"])
-                except:
+                if r["status"]<0:
                     pass
+                else:
+                    try:
+                        sids.append(r["id"])
+                        stitles.append(r["name"])
+                        sstitles.append(r["artists"][0]["name"])
+                    except:
+                        pass
             albums_lens = len(sids)
         else:
             l = l["playlists"]
@@ -160,48 +225,61 @@ def s():
 
 @app.route('/song/<int:song_id>')
 def song_player(song_id):
-    song_info = song_info_get(song_id)
-    song_name = song_info[0]
-    artist = song_info[1]
-    pic_url = song_info[2]
-    song_url = song_info[3]
-    lyrics = requests.get('http://music.163.com/api/song/lyric/?id=%s&lv=-1&csrf_token='%(song_id),headers={"Referer": "http://music.163.com/"}).json()["lrc"]["lyric"].replace("\n","\\n")
-    return render_template("song.html",song_name=song_name,artist=artist,pic_url=pic_url,song_url=song_url,lyrics=lyrics)
+    if not re.match(r'https', request.host_url):
+        qssl = 0
+    else:
+        qssl = 1
+    song_info = song_info_get(song_id,qssl,1)
+    code = song_info[0]
+    if code != 200:
+        abort(code)
+    else:
+        song_name = song_info[1]
+        artist = song_info[2]
+        song_url = song_info[3]
+        pic_url = song_info[4]
+        lyrics = song_info[5]
+        return render_template("song.html",song_name=song_name,artist=artist,song_url=song_url,pic_url=pic_url,lyrics=lyrics)
 
 @app.route('/playlist/<int:playlist_id>')
 def playlist_player(playlist_id):
-    playlist_info = playlist_info_get(playlist_id)
-    song_names = playlist_info[0]
-    artists = playlist_info[1]
-    pic_urls = playlist_info[2]
-    song_urls = playlist_info[3]
-    lens=len(song_names)
-    playlist_name = playlist_info[4]
-    return render_template("playlist.html",lens=lens,song_names=song_names,artists=artists,pic_urls=pic_urls,song_urls=song_urls,playlist_name=playlist_name)
+    if not re.match(r'https', request.host_url):
+        qssl = 0
+    else:
+        qssl = 1
+    playlist_info = playlist_info_get(playlist_id,qssl)
+    code = playlist_info[0]
+    if code != 200:
+        abort(code)
+    else:
+        codes = playlist_info[1]
+        playlist_name = playlist_info[2]
+        song_names = playlist_info[3]
+        artists = playlist_info[4]
+        song_urls = playlist_info[5]
+        pic_urls = playlist_info[6]
+        lens=len(song_names)
+        return render_template("playlist.html",lens=lens,codes=codes,playlist_name=playlist_name,song_names=song_names,artists=artists,song_urls=song_urls,pic_urls=pic_urls)
 
 @app.route('/album/<int:album_id>')
 def album_player(album_id):
-    album_info = album_info_get(album_id)
-    song_names = album_info[0]
-    artists = album_info[1]
-    pic_urls = album_info[2]
-    song_urls = album_info[3]
-    lens=len(song_names)
-    album_name = album_info[4]
-    artist_name = album_info[5]
-    return render_template("album.html",lens=lens,song_names=song_names,artists=artists,pic_urls=pic_urls,song_urls=song_urls,album_name=album_name,artist_name=artist_name)
-
-
-@app.errorhandler(404)
-def page_not_found(e):
-    print "400"
-    return redirect("https://yux.io/2016/05/15/163music/#Error")
-
-@app.errorhandler(500)
-def internal_server_error(e):
-    print "500"
-    return redirect("https://yux.io/2016/05/15/163music/#Error")
-
+    if not re.match(r'https', request.host_url):
+        qssl = 0
+    else:
+        qssl = 1
+    album_info = album_info_get(album_id,qssl)
+    code = album_info[0]
+    if code != 200:
+        abort(code)
+    else:
+        codes = album_info[1]
+        album_name = album_info[2]
+        song_names = album_info[3]
+        artists = album_info[4]
+        song_urls = album_info[5]
+        pic_urls = album_info[6]
+        lens=len(song_names)
+        return render_template("album.html",lens=lens,codes=codes,album_name=album_name,song_names=song_names,artists=artists,song_urls=song_urls,pic_urls=pic_urls)
 
 if __name__ == '__main__':
     app.run()

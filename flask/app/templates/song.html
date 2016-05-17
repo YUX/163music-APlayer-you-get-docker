@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>{{song_name}} - {{artist}}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='APlayer.min.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <style>
@@ -56,7 +55,11 @@
             element: document.getElementById('player'),
             narrow: false,
             autoplay: true,
-            showlrc: 1,
+            {% if lyrics %}
+              showlrc: 1,
+            {% else %}
+              showlrc: 0,
+            {% endif %}
             mutex: true,
             theme: '#615754',
             music: {
@@ -64,7 +67,9 @@
                 author: '{{artist}}',
                 url: '{{song_url}}',
                 pic: '{{pic_url}}',
-                lrc: "{{lyrics}}"
+                {% if lyrics %}
+                  lrc: "{{lyrics}}"
+                {% endif %}
             }
         });
         ap.init();
