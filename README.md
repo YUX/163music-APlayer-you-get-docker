@@ -1,5 +1,60 @@
 # 163music-APlayer-you-get
 
+## What's new on version beta 3
+### iframe 食用方法
+## 单曲播放 https://music.daoapp.io/iframe/song
+
+### 参数：
+- id ，顾名思义就是 163 歌曲 ID ，必填
+- qssl ，是否使用 HTTPS 协议，非必填，使用为 1 ，不用为 0 ，不填也是 0
+- max_width ，非必填，最大宽度，可填写例如 123px, 40%, 32rem 等。不填为 100%
+- qlrc ， 1 显示歌词， 0 不显示歌词，非必填，默认不显示
+- autoplay ， 1 自动播放， 0 不自动播放 ，默认不自动播放
+- narrow ，是否为窄模式(仅显示封面）， 1 显示窄模式， 0 不是窄模式，默认 0
+
+### example :
+https://music.daoapp.io/iframe/song?id=27808044&qssl=1&qlrc=1&narrow=0
+## 歌单播放 https://music.daoapp.io/iframe/playlist
+
+### 参数：
+- id ，顾名思义就是 163 歌单 ID ，必填
+- qssl ，是否使用 HTTPS 协议，非必填，使用为 1 ，不用为 0 ，不填也是 0
+- max_width ，非必填，最大宽度，可填写例如 123px, 40%, 32rem 等。不填为 100%
+- autoplay ， 1 自动播放， 0 不自动播放 ，默认不自动播放
+
+### example :
+https://music.daoapp.io/iframe/playlist?id=37288058&qssl=1&autoplay=1&max_width=500px&narrow=0
+
+## 专辑播放 https://music.daoapp.io/iframe/album
+### 参数：
+- id ，顾名思义就是 163 专辑 ID ，必填
+- qssl ，是否使用 HTTPS 协议，非必填，使用为 1 ，不用为 0 ，不填也是 0
+- max_width ，非必填，最大宽度，可填写例如 123px, 40%, 32rem 等。不填为 100%
+- autoplay ， 1 自动播放， 0 不自动播放 ，默认不自动播放
+
+### example :
+https://music.daoapp.io/iframe/album?id=16953&qssl=1&autoplay=1&max_width=500px&narrow=0
+
+## Screenshot
+![]( http://ww1.sinaimg.cn/large/863bb56fgw1f3yr5kq63ej207x07i74n.jpg)
+
+## Live demo
+[https://yux.io/]( https://yux.io/)
+
+
+方便大家把音乐放到自己的网页上 SSL 模式求不要滥用带宽有限
+其他更新
+- 修正了外文歌词没有空格的 bug
+- 在搜索结果里剔除了无法播放的歌曲
+
+
+项目GitHub地址[https://github.com/YUX-IO/163music-APlayer-you-get-docker]( https://github.com/YUX-IO/163music-APlayer-you-get-docker) 求个Star+Fork，有Dockerfile方便部署在自己的主机上
+如果部署在自己主机请一并将SSL代理一并部署，Github[https://github.com/YUX-IO/gossl]( https://github.com/YUX-IO/gossl)
+
+播放器是 DIYgod 的 [Aplayer]( http://aplayer.js.org/)
+
+****
+
 ## What's new on version beta 2
 - 重构代码结构，以便下一版重新打包API
 - ~~自动识别HTTPS|HTTP 协议~~  （╯‵□′）╯︵┴─┴ 然而并没有
