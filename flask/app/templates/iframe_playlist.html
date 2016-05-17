@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{{song_name}} - {{artist}}</title>
+    <title>{{playlist_name}}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='APlayer.min.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <style>
@@ -52,22 +52,20 @@
             element: document.getElementById('player'),
             narrow: {{narrow}},
             autoplay: {{autoplay}},
-            {% if lyrics %}
-              showlrc: 1,
-            {% else %}
-              showlrc: 0,
-            {% endif %}
+            showlrc: false,
             mutex: true,
-            theme: '#615754',
-            music: {
-                title: '{{song_name}}',
-                author: '{{artist}}',
-                url: '{{song_url}}',
-                pic: '{{pic_url}}',
-                {% if lyrics %}
-                  lrc: "{{lyrics}}"
-                {% endif %}
-            }
+            theme: '#ad7a86',
+            music:
+            [
+                {% for k in range(lens) %}
+                {
+                    title: '{{ song_names[k] }}',
+                    author: '{{artists[k]}}',
+                    url: '{{song_urls[k]}}',
+                    pic: '{{pic_urls[k]}}'
+                },
+                {% endfor %}
+            ]
         });
         ap.init();
     </script>
