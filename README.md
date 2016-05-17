@@ -2,7 +2,7 @@
 
 ## What's new on version beta 2
 - 重构代码结构，以便下一版重新打包API
-- 自动识别HTTPS|HTTP 协议
+- ~~自动识别HTTPS|HTTP 协议~~  （╯‵□′）╯︵┴─┴ 然而并没有
 - 自带HTTPS代理(Beta)
 - 修正了外文歌词没有空格的bug
 - 在搜索结果里剔除了无法播放的歌曲
