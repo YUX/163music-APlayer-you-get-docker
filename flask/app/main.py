@@ -40,10 +40,10 @@ def song_info_get(song_id,qssl,qlrc):
     r = requests.get('http://music.163.com/api/song/detail/?id=%s&ids=[%s]&csrf_token='%(song_id,song_id),headers={"Referer": "http://music.163.com/"}).json()["songs"]
     if r == []:
         code = 404
-        return code
+        return [code]
     elif not r[0]["mp3Url"]:
         code = 403
-        return 403
+        return [code]
     else:
         code = 200
         r = r[0]
@@ -71,7 +71,7 @@ def playlist_info_get(playlist_id,qssl):
     l = requests.get("http://music.163.com/api/playlist/detail?id=%s&csrf_token=" % playlist_id, headers={"Referer": "http://music.163.com/"}).json()
     if l["code"] != 200:
         code = l["code"]
-        return code
+        return [code]
     else:
         l = l["result"]
     codes = []
@@ -111,43 +111,43 @@ def album_info_get(album_id,qssl):
     l = requests.get("http://music.163.com/api/album/%s?id=%s&csrf_token=" % (album_id, album_id), headers={"Referer": "http://music.163.com/"}).json()
     if l["code"] != 200:
         code = l["code"]
+        return [code]
     else:
         l = l["album"]
-    codes = []
-    album_name = l["name"]
-    song_names=[]
-    artists=[]
-    song_urls=[]
-    pic_urls=[]
-    for r in l["songs"]:
-        try:
-            code = 200
-            songNet = 'p'+r["mp3Url"].split('/')[2][1:]
-            if 'hMusic' in r and r['hMusic'] != None:
-                dfsId = r["hMusic"]["dfsId"]
-            else:
-                dfsId = r["bMusic"]["dfsId"]
-            song_url = make_url(songNet,dfsId)
-            song_name = r["name"]
-            song_id = r["id"]
-            pic_url = r["album"]["blurPicUrl"]
-            artist = r["artists"][0]["name"]
-            if qssl:
-                song_url = song_url.replace("http://","https://gossl.daoapp.io/")
-                pic_url = pic_url.replace("http://","https://gossl.daoapp.io/")
-            else:
+        codes = []
+        album_name = l["name"]
+        song_names=[]
+        artists=[]
+        song_urls=[]
+        pic_urls=[]
+        for r in l["songs"]:
+            try:
+                code = 200
+                songNet = 'p'+r["mp3Url"].split('/')[2][1:]
+                if 'hMusic' in r and r['hMusic'] != None:
+                    dfsId = r["hMusic"]["dfsId"]
+                else:
+                    dfsId = r["bMusic"]["dfsId"]
+                song_url = make_url(songNet,dfsId)
+                song_name = r["name"]
+                song_id = r["id"]
+                pic_url = r["album"]["blurPicUrl"]
+                artist = r["artists"][0]["name"]
+                if qssl:
+                    song_url = song_url.replace("http://","https://gossl.daoapp.io/")
+                    pic_url = pic_url.replace("http://","https://gossl.daoapp.io/")
+                else:
+                    pass
+                song_names.append(song_name)
+                artists.append(artist)
+                song_urls.append(song_url)
+                pic_urls.append(pic_url)
+            except:
                 pass
-            song_names.append(song_name)
-            artists.append(artist)
-            song_urls.append(song_url)
-            pic_urls.append(pic_url)
-        except:
-            pass
-    return [code,codes,album_name,song_names,artists,song_urls,pic_urls]
+        return [code,codes,album_name,song_names,artists,song_urls,pic_urls]
 
 @app.route('/')
 def hello_world():
-    print request.host_url
     return render_template("index.html")
 
 @app.route('/s', methods=['GET', 'POST'])
@@ -226,11 +226,7 @@ def s():
 
 @app.route('/song/<int:song_id>')
 def song_player(song_id):
-    if not re.match(r'https', request.host_url):
-        qssl = 0
-    else:
-        qssl = 1
-    song_info = song_info_get(song_id,qssl,1)
+    song_info = song_info_get(song_id,0,1)
     code = song_info[0]
     if code != 200:
         abort(code)
@@ -242,13 +238,35 @@ def song_player(song_id):
         lyrics = song_info[5]
         return render_template("song.html",song_name=song_name,artist=artist,song_url=song_url,pic_url=pic_url,lyrics=lyrics)
 
-@app.route('/playlist/<int:playlist_id>')
-def playlist_player(playlist_id):
-    if not re.match(r'https', request.host_url):
+@app.route('/iframe/song', methods=['GET'])
+def iframe_song_player():
+    song_id = request.args.get('id', '')
+    qssl = request.args.get('qssl', '')
+    max_width = request.args.get('max_width', '')
+    qlrc = request.args.get('qlrc', '')
+    if qssl == '':
         qssl = 0
     else:
-        qssl = 1
-    playlist_info = playlist_info_get(playlist_id,qssl)
+        qssl = int(qssl)
+    if qlrc == '':
+        qlrc = 0
+    else:
+        qlrc = int(qlrc)
+    song_info = song_info_get(song_id,qssl,qlrc)
+    code = song_info[0]
+    if code != 200:
+        abort(code)
+    else:
+        song_name = song_info[1]
+        artist = song_info[2]
+        song_url = song_info[3]
+        pic_url = song_info[4]
+        lyrics = song_info[5]
+        return render_template("iframe_song.html",song_name=song_name,artist=artist,song_url=song_url,pic_url=pic_url,lyrics=lyrics,max_width=max_width)
+
+@app.route('/playlist/<int:playlist_id>')
+def playlist_player(playlist_id):
+    playlist_info = playlist_info_get(playlist_id,0)
     code = playlist_info[0]
     if code != 200:
         abort(code)
@@ -264,11 +282,7 @@ def playlist_player(playlist_id):
 
 @app.route('/album/<int:album_id>')
 def album_player(album_id):
-    if not re.match(r'https', request.host_url):
-        qssl = 0
-    else:
-        qssl = 1
-    album_info = album_info_get(album_id,qssl)
+    album_info = album_info_get(album_id,0)
     code = album_info[0]
     if code != 200:
         abort(code)

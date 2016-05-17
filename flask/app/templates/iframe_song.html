@@ -10,10 +10,7 @@
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
         .container {
-            max-width: 32rem;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 50px;
+            max-width: {{max_width}};
         }
         h1 {
             font-size: 54px;
@@ -46,7 +43,7 @@
     </style>
 </head>
 <body>
-    <div class="container" style="margin-top:130px">
+    <div class="container">
         <div id="player" class="aplayer"></div>
     </div>
     <script src="{{ url_for('static', filename='APlayer.min.js') }}"></script>
