@@ -3,7 +3,8 @@ import requests
 import hashlib
 import base64
 import re
-from flask import Flask, render_template, url_for, redirect, request, abort
+import json
+from flask import Flask, render_template, url_for, redirect, request, abort, Response
 app = Flask(__name__)
 app.debug = False
 
@@ -35,6 +36,18 @@ def make_url(songNet, dfsId):
     encId = encrypted_id(dfsId)
     mp3_url = "http://%s/%s/%s.mp3" % (songNet, encId, dfsId)
     return mp3_url
+
+def ssl_proxy(url,postfix,CHUNK_SIZE):
+    r = requests.get("http://"+url, headers={"Referer": "http://music.163.com/"}, stream=True)
+    headers = r.raw.headers.items()
+    if postfix == "mp3":
+        headers[-2] = ("Content-Type","audio/mpeg; charset=UTF-8")
+    else:
+        pass
+    def generate():
+        for chunk in r.iter_content(CHUNK_SIZE):
+            yield chunk
+    return Response(generate(), headers = headers)
 
 def song_info_get(song_id,qssl,qlrc):
     r = requests.get('http://music.163.com/api/song/detail/?id=%s&ids=[%s]&csrf_token='%(song_id,song_id),headers={"Referer": "http://music.163.com/"}).json()["songs"]
@@ -362,6 +375,40 @@ def iframe_album_player():
         pic_urls = album_info[6]
         lens=len(song_names)
         return render_template("iframe_album.html",lens=lens,codes=codes,album_name=album_name,song_names=song_names,artists=artists,song_urls=song_urls,pic_urls=pic_urls,max_width=max_width,autoplay=autoplay)
+
+@app.route('/api/v1/song', methods=['GET'])
+def get_song_api():
+    song_id = request.args.get('id', '')
+    if song_id == "":
+        abort(400)
+    search_type = request.args.get('type', '')
+    qssl = request.args.get('qssl', '')
+    if qssl == "0" or qssl == "1":
+        qssl = int(qssl)
+    else:
+        qssl = 0
+    if search_type == "meta_lrc":
+        song_info = song_info_get(song_id,qssl,1)
+        try:
+            return Response(json.dumps(dict(code=song_info[0],song_name=song_info[1],artist=song_info[2],song_url=song_info[3],pic_url=song_info[4],lyrics=song_info[5]), ensure_ascii=False),mimetype="application/json")
+        except:
+            abort(404)
+    elif search_type == "meta":
+        song_info = song_info_get(song_id,qssl,0)
+        try:
+            return Response(json.dumps(dict(code=song_info[0],song_name=song_info[1],artist=song_info[2],song_url=song_info[3],pic_url=song_info[4]), ensure_ascii=False),mimetype="application/json")
+        except:
+            abort(404)
+    elif search_type == "audio":
+        song_info = song_info_get(song_id,0,0)
+        song_url = song_info[3]
+        return ssl_proxy(song_url[7:],"mp3",2048)
+    elif search_type == "image":
+        song_info = song_info_get(song_id,0,0)
+        pic_url = song_info[4]
+        return ssl_proxy(pic_url[7:],"jpg",1024)
+    else:
+        abort(400)
 
 if __name__ == '__main__':
     app.run()
