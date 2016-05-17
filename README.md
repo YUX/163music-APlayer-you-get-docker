@@ -1,5 +1,37 @@
 # 163music-APlayer-you-get
 
+## What's new on version beta 4
+
+### Song API Release
+- URL: https://music.daoapp.io/api/v1/song
+- Méthode: GET
+- Paramètre
+  - id (song_id)
+  - search_type
+    - meta (song's infomation)
+    - meta_lrc (song's infomation with lyrics)
+    - audio **(The audio stream!!!!)**
+    - image **(The album cover image stream!!!!)**
+  - qssl=[0|1]
+
+
+  ### Example
+  http://127.0.0.1:1234/api/v1/song?id=27808044&type=meta
+```JSON
+{"song_url": "http://p2.music.126.net/oiyHl_q-7m4Z0dFqhLmg_Q==/3319425604329008.mp3", "song_name": "丑八怪", "code": 200, "pic_url": "http://p4.music.126.net/i2YqeMpR2DPuj15M-B1skA==/5816416510959096.jpg", "artist": "薛之谦"}
+```
+http://127.0.0.1:1234/api/v1/song?id=27808044&type=meta&qssl=1
+```JSON
+{"song_url": "https://gossl.daoapp.io/p2.music.126.net/oiyHl_q-7m4Z0dFqhLmg_Q==/3319425604329008.mp3", "song_name": "丑八怪", "code": 200, "pic_url": "https://gossl.daoapp.io/p4.music.126.net/i2YqeMpR2DPuj15M-B1skA==/5816416510959096.jpg", "artist": "薛之谦"}
+```
+
+http://127.0.0.1:1234/api/v1/song?id=27808044&type=meta_lrc
+```JSON
+{"song_url": "http://p2.music.126.net/oiyHl_q-7m4Z0dFqhLmg_Q==/3319425604329008.mp3", "code": 200, "lyrics": "[00:00.00] 作曲 : 李荣浩\\n[00:01.00] 作词 : 甘世佳\\n[00:19.660]如果世界漆黑 其实我很美\\n[00:23.280]在爱情里面进退 最多被消费\\n[00:27.100]无关痛痒的是非\\n[00:29.090]又怎么不对 无所谓\\n[00:35.090]如果像你一样 总有人赞美\\n[00:38.720]围绕着我的卑微 也许能消退\\n[00:42.720]其实我并不在意 有很多机会\\n[00:46.090]像巨人一样的无畏\\n[00:48.910]放纵我心里的鬼\\n[00:50.600]可是我不配\\n[00:53.860]丑八怪 能否别把灯打开\\n[01:01.610]我要的爱 出没在漆黑一片的舞台\\n[01:08.860]丑八怪 在这暧昧的时代\\n[01:16.980]我的存在 像意外\\n[01:23.880]\\n[01:37.190]有人用一滴泪 会红颜祸水\\n[01:40.750]有人丢掉称谓 什么也不会\\n[01:44.690]只要你足够虚伪\\n[01:46.500]就不怕魔鬼 对不对\\n[01:52.450]如果剧本写好 谁比谁高贵\\n[01:56.140]我只能沉默以对 美丽本无罪\\n[02:00.030]当欲望开始贪杯 有更多机会\\n[02:03.470]像尘埃一样的无畏\\n[02:06.290]化成灰谁认得谁管他配不配\\n[02:11.360]丑八怪 能否别把灯打开\\n[02:18.920]我要的爱 出没在漆黑一片的舞台\\n[02:26.230]丑八怪 在这暧昧的时代\\n[02:34.360]我的存在 不意外\\n[03:02.260]丑八怪 其实见多就不怪\\n[03:10.260]放肆去high 用力踩\\n[03:14.450]那不堪一击的洁白\\n[03:17.510]丑八怪 这是我们的时代\\n[03:25.780]我不存在 才意外\\n", "artist": "薛之谦", "song_name": "丑八怪", "pic_url": "http://p4.music.126.net/i2YqeMpR2DPuj15M-B1skA==/5816416510959096.jpg"}
+```
+
+2016-5-18 1:24 à Paris
+
 ## What's new on version beta 3
 ### iframe 食用方法
 ## 单曲播放 https://music.daoapp.io/iframe/song
