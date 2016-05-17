@@ -296,7 +296,6 @@ def iframe_playlist_player():
     qssl = request.args.get('qssl', '')
     max_width = request.args.get('max_width', '')
     autoplay = request.args.get('autoplay', '')
-    narrow = request.args.get('narrow', '')
     if qssl == 'O' or qssl == '1':
         qssl = int(qssl)
     else:
@@ -305,10 +304,6 @@ def iframe_playlist_player():
         autoplay = int(autoplay)
     else:
         autoplay = 0
-    if narrow == '0' or narrow == '1':
-        narrow = int(narrow)
-    else:
-        narrow = 0
     playlist_info = playlist_info_get(playlist_id,qssl)
     code = playlist_info[0]
     if code != 200:
@@ -321,7 +316,7 @@ def iframe_playlist_player():
         song_urls = playlist_info[5]
         pic_urls = playlist_info[6]
         lens=len(song_names)
-        return render_template("iframe_playlist.html",lens=lens,codes=codes,playlist_name=playlist_name,song_names=song_names,artists=artists,song_urls=song_urls,pic_urls=pic_urls,max_width=max_width,autoplay=autoplay,narrow=narrow)
+        return render_template("iframe_playlist.html",lens=lens,codes=codes,playlist_name=playlist_name,song_names=song_names,artists=artists,song_urls=song_urls,pic_urls=pic_urls,max_width=max_width,autoplay=autoplay)
 
 
 @app.route('/album/<int:album_id>')
@@ -346,7 +341,6 @@ def iframe_album_player():
     qssl = request.args.get('qssl', '')
     max_width = request.args.get('max_width', '')
     autoplay = request.args.get('autoplay', '')
-    narrow = request.args.get('narrow', '')
     if qssl == 'O' or qssl == '1':
         qssl = int(qssl)
     else:
@@ -355,10 +349,6 @@ def iframe_album_player():
         autoplay = int(autoplay)
     else:
         autoplay = 0
-    if narrow == '0' or narrow == '1':
-        narrow = int(narrow)
-    else:
-        narrow = 0
     album_info = album_info_get(album_id,qssl)
     code = album_info[0]
     if code != 200:
@@ -371,7 +361,7 @@ def iframe_album_player():
         song_urls = album_info[5]
         pic_urls = album_info[6]
         lens=len(song_names)
-        return render_template("iframe_album.html",lens=lens,codes=codes,album_name=album_name,song_names=song_names,artists=artists,song_urls=song_urls,pic_urls=pic_urls,max_width=max_width,autoplay=autoplay,narrow=narrow)
+        return render_template("iframe_album.html",lens=lens,codes=codes,album_name=album_name,song_names=song_names,artists=artists,song_urls=song_urls,pic_urls=pic_urls,max_width=max_width,autoplay=autoplay)
 
 if __name__ == '__main__':
     app.run()
