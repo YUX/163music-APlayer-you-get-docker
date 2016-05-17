@@ -147,6 +147,7 @@ def album_info_get(album_id,qssl):
 
 @app.route('/')
 def hello_world():
+    print request.host_url
     return render_template("index.html")
 
 @app.route('/s', methods=['GET', 'POST'])
