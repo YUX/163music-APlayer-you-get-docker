@@ -411,4 +411,4 @@ def get_song_api():
         abort(400)
 
 if __name__ == '__main__':
-    app.run(port=1234)
+    app.run()
