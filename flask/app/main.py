@@ -68,6 +68,7 @@ def song_info_get(song_id,qssl,qlrc):
         song_url = make_url(songNet,dfsId)
         song_name = r["name"]
         pic_url = r["album"]["blurPicUrl"]
+        album_name = r["album"]["name"]
         artist = r["artists"][0]["name"]
         if qssl:
             song_url = song_url.replace("http://","https://gossl.daoapp.io/")
@@ -78,7 +79,7 @@ def song_info_get(song_id,qssl,qlrc):
             lyrics = requests.get('http://music.163.com/api/song/lyric/?id=%s&lv=-1&csrf_token='%(song_id),headers={"Referer": "http://music.163.com/"}).json()["lrc"]["lyric"].replace("\n","\\n")
         else:
             lyrics = 0
-        return [code,song_name,artist,song_url,pic_url,lyrics]
+        return [code,song_name,artist,song_url,pic_url,lyrics,album_name]
 
 def playlist_info_get(playlist_id,qssl):
     l = requests.get("http://music.163.com/api/playlist/detail?id=%s&csrf_token=" % playlist_id, headers={"Referer": "http://music.163.com/"}).json()
@@ -390,13 +391,13 @@ def get_song_api():
     if search_type == "meta_lrc":
         song_info = song_info_get(song_id,qssl,1)
         try:
-            return Response(json.dumps(dict(code=song_info[0],song_name=song_info[1],artist=song_info[2],song_url=song_info[3],pic_url=song_info[4],lyrics=song_info[5]), ensure_ascii=False),mimetype="application/json")
+            return Response(json.dumps(dict(code=song_info[0],song_name=song_info[1],artist=song_info[2],song_url=song_info[3],pic_url=song_info[4],lyrics=song_info[5],album_name=song_info[6]), ensure_ascii=False),mimetype="application/json")
         except:
             abort(404)
     elif search_type == "meta":
         song_info = song_info_get(song_id,qssl,0)
         try:
-            return Response(json.dumps(dict(code=song_info[0],song_name=song_info[1],artist=song_info[2],song_url=song_info[3],pic_url=song_info[4]), ensure_ascii=False),mimetype="application/json")
+            return Response(json.dumps(dict(code=song_info[0],song_name=song_info[1],artist=song_info[2],song_url=song_info[3],pic_url=song_info[4],album_name=song_info[6]), ensure_ascii=False),mimetype="application/json")
         except:
             abort(404)
     elif search_type == "audio":
