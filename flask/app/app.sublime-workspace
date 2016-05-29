@@ -3,10 +3,30 @@
 	{
 		"selected_items":
 		[
+			[
+				"pint",
+				"print"
+			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "app.sublime-project",
+			"settings":
+			{
+				"buffer_size": 483,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "main.py",
+			"settings":
+			{
+				"buffer_size": 14808,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -60,19 +80,47 @@
 	"command_palette":
 	{
 		"height": 354.0,
-		"last_filter": "pc",
+		"last_filter": "pcl",
 		"selected_items":
 		[
 			[
-				"pc",
-				"Package Control: Install Package"
-			],
-			[
 				"pcl",
 				"Package Control: List Packages"
+			],
+			[
+				"git p",
+				"Git: Push"
+			],
+			[
+				"git ",
+				"Git: Commit"
+			],
+			[
+				"git al",
+				"Git: Add All"
+			],
+			[
+				"git inor",
+				"Git: Update Project Ignored Files"
+			],
+			[
+				"git c",
+				"Git: Commit"
+			],
+			[
+				"git ad",
+				"Git: Add All"
+			],
+			[
+				"pc",
+				"Package Control: Remove Package"
+			],
+			[
+				"git st",
+				"Git: Show Tags"
 			]
 		],
-		"width": 467.0
+		"width": 575.0
 	},
 	"console":
 	{
@@ -99,12 +147,15 @@
 	[
 		"/Users/yux/Documents/GitHub/163music-APlayer-you-get-docker/flask/app/main.py",
 		"/Users/yux/Documents/GitHub/163music-APlayer-you-get-docker/flask/app/app.sublime-project",
+		"/Users/yux/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/Users/yux/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/yux/Library/Application Support/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/Users/yux/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/Users/yux/Dropbox/Playground/JS/playground.js",
 		"/Users/yux/Documents/Bitbucket/api/flask/app/playground.py",
 		"/Users/yux/Documents/Bitbucket/api/flask/app/app.sublime-project",
 		"/Users/yux/Documents/Bitbucket/api/flask/app/main.py",
 		"/Users/yux/Dropbox/Playground/Python/pg.py",
-		"/Users/yux/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/Users/yux/Library/Application Support/Sublime Text 3/Packages/User/untitled.sublime-build",
 		"/Users/yux/Downloads/HackerNews-React-Native-master/package.json",
 		"/Users/yux/Desktop/ReactNativeNews/index.ios.js",
@@ -114,7 +165,7 @@
 	],
 	"find":
 	{
-		"height": 70.0
+		"height": 28.0
 	},
 	"find_in_files":
 	{
@@ -147,14 +198,74 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "app.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 483,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								136,
+								136
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 24.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "main.py",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 14808,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 70.0
+		"height": 28.0
 	},
 	"input":
 	{
@@ -190,6 +301,10 @@
 	"output.find_results":
 	{
 		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 156.0
 	},
 	"pinned_build_system": "",
 	"project": "app.sublime-project",
