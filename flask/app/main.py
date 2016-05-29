@@ -1,3 +1,4 @@
+#!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 import requests
 import hashlib
@@ -7,6 +8,8 @@ import json
 from flask import Flask, render_template, url_for, redirect, request, abort, Response
 app = Flask(__name__)
 app.debug = False
+print "appddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddle"
+
 
 def netease_hymn():
     return """
@@ -17,6 +20,7 @@ def netease_hymn():
     Hallelujah my King!
     errr oh! fuck ohhh!!!!
     """
+
 
 def encrypted_id(dfsId):
     x = [ord(i[0]) for i in netease_hymn().split()]
@@ -50,7 +54,7 @@ def ssl_proxy(url,postfix,CHUNK_SIZE):
     return Response(generate(), headers = headers)
 
 def song_info_get(song_id,qssl,qlrc):
-    r = requests.get('http://music.163.com/api/song/detail/?id=%s&ids=[%s]&csrf_token='%(song_id,song_id),headers={"Referer": "http://music.163.com/"}).json()["songs"]
+    r = requests.get('http://music.163.com/api/song/detail/?id=%s&ids=[%s]&csrf_token=' % (song_id, song_id), headers={"Referer": "http://music.163.com/"}).json()["songs"]
     if r == []:
         code = 404
         return [code]
