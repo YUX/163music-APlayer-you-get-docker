@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import Flask, render_template, request, abort, redirect, Response
+from flask import Flask, render_template, request, abort, redirect, Response, url_for
 import netease
 import json
 from werkzeug.contrib.cache import SimpleCache
@@ -114,4 +114,4 @@ def player():
 
 	return render_template("aplayer.html",songs_info=songs_info,title=title,showlrc=showlrc)
 if __name__ == "__main__":
-    app.run()
+    app.run(port=5010)

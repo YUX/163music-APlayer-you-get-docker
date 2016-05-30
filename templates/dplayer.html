@@ -4,8 +4,8 @@
       <meta charset="UTF-8">
       <title>{{title}}</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="{{ url_for('static', filename='DPlayer.min.css') }}">
-      <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+      <link rel="stylesheet" href="static/DPlayer.min.css">
+      <link rel="shortcut icon" href="static/favicon.ico">
       <style>
          body {
          font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -51,8 +51,8 @@
       <div class="container">
          <div class="dplayer"></div>
       </div>
-      <script src="{{ url_for('static', filename='stats.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='DPlayer.min.js') }}"></script>
+      <script src="static/stats.min.js"></script>
+      <script src="static/DPlayer.min.js"></script>
       <script>
          var dp = new DPlayer({
              element: document.getElementsByClassName('dplayer')[0],

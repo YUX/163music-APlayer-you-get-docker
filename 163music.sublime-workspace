@@ -4,76 +4,16 @@
 		"selected_items":
 		[
 			[
-				"re",
-				"result	function"
-			],
-			[
-				"net",
-				"netease_search	function"
-			],
-			[
-				"ste",
-				"session_test	function"
-			],
-			[
-				"if",
-				"ifmain	if __name__ == '__main__'"
-			],
-			[
-				"song",
-				"song_info	statement"
-			],
-			[
-				"song_",
-				"song_info"
-			],
-			[
-				"pla",
-				"playlist_info	statement"
-			],
-			[
-				"pl",
-				"playlist_info	statement"
-			],
-			[
-				"album",
-				"album_info"
-			],
-			[
-				"api_",
-				"api_info"
-			],
-			[
-				"el",
-				"else	keyword"
-			],
-			[
-				"Re",
-				"Response	class"
-			],
-			[
-				"api",
-				"api_info	statement"
-			],
-			[
-				"gen",
-				"genre	statement"
-			],
-			[
-				"meth",
-				"method"
-			],
-			[
-				"me",
-				"methods"
-			],
-			[
 				"ra",
 				"radio_search	function"
 			],
 			[
 				"mv",
 				"mv_search	function"
+			],
+			[
+				"pl",
+				"playlist_search	function"
 			],
 			[
 				"play",
@@ -84,8 +24,16 @@
 				"album_search	function"
 			],
 			[
+				"el",
+				"elif	keyword"
+			],
+			[
 				"son",
 				"songs_info"
+			],
+			[
+				"re",
+				"return	keyword"
 			],
 			[
 				"fo",
@@ -108,8 +56,16 @@
 				"playlist_id	statement"
 			],
 			[
+				"song_",
+				"song_info	statement"
+			],
+			[
 				"l",
 				"lyric"
+			],
+			[
+				"pla",
+				"playlist"
 			],
 			[
 				"p",
@@ -136,6 +92,14 @@
 				"song_url"
 			],
 			[
+				"net",
+				"netease_cloud_music	function"
+			],
+			[
+				"song",
+				"song_id	statement"
+			],
+			[
 				"ar",
 				"args"
 			],
@@ -148,6 +112,10 @@
 				"album_name	statement"
 			],
 			[
+				"if",
+				"if	If Condition"
+			],
+			[
 				"pint",
 				"print"
 			]
@@ -155,22 +123,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "netease.py",
-			"settings":
-			{
-				"buffer_size": 10839,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "main.py",
-			"settings":
-			{
-				"buffer_size": 4028,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -223,10 +175,58 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 354.0,
-		"last_filter": "pcrm",
+		"height": 210.0,
+		"last_filter": "push",
 		"selected_items":
 		[
+			[
+				"push",
+				"Git: Push"
+			],
+			[
+				"com",
+				"Git: Commit"
+			],
+			[
+				"gitadd",
+				"Git: Add All"
+			],
+			[
+				"git pu",
+				"Git: Push"
+			],
+			[
+				"git co",
+				"Git: Commit"
+			],
+			[
+				"git ad",
+				"Git: Add All"
+			],
+			[
+				"git push",
+				"Git: Push"
+			],
+			[
+				"git add",
+				"Git: Add All"
+			],
+			[
+				"git c",
+				"Git: Commit"
+			],
+			[
+				"gitp",
+				"Git: Push"
+			],
+			[
+				"git ",
+				"Git: Commit"
+			],
+			[
+				"pci",
+				"Package Control: Install Package"
+			],
 			[
 				"pcrm",
 				"Package Control: Remove Package"
@@ -234,10 +234,6 @@
 			[
 				"pcl",
 				"Package Control: List Packages"
-			],
-			[
-				"pci",
-				"Package Control: Install Package"
 			],
 			[
 				"pcrp",
@@ -252,24 +248,12 @@
 				"Git: Push"
 			],
 			[
-				"git ",
-				"Git: Commit"
-			],
-			[
 				"git al",
 				"Git: Add All"
 			],
 			[
 				"git inor",
 				"Git: Update Project Ignored Files"
-			],
-			[
-				"git c",
-				"Git: Commit"
-			],
-			[
-				"git ad",
-				"Git: Add All"
 			],
 			[
 				"pc",
@@ -280,7 +264,7 @@
 				"Git: Show Tags"
 			]
 		],
-		"width": 556.0
+		"width": 559.0
 	},
 	"console":
 	{
@@ -301,13 +285,18 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/yux/Documents/GitHub/you-get-api/flask/app",
-		"/Users/yux/Documents/GitHub/you-get-api/flask/app/static",
-		"/Users/yux/Documents/GitHub/you-get-api/flask/app/static/s",
-		"/Users/yux/Documents/GitHub/you-get-api/flask/app/templates"
+		"/Users/yux/Documents/GitHub/163music-APlayer-you-get-docker",
+		"/Users/yux/Documents/GitHub/163music-APlayer-you-get-docker/static",
+		"/Users/yux/Documents/GitHub/163music-APlayer-you-get-docker/templates"
 	],
 	"file_history":
 	[
+		"/Users/yux/Documents/GitHub/163music-APlayer-you-get-docker/main.py",
+		"/Users/yux/Documents/GitHub/163music-APlayer-you-get-docker/163music.sublime-project",
+		"/Users/yux/Documents/GitHub/163music-APlayer-you-get-docker/.gitignore",
+		"/Users/yux/Documents/GitHub/you-get-api/flask/app/Dockerfile",
+		"/Users/yux/Documents/GitHub/flask-python34/Dockerfile",
+		"/Users/yux/Documents/GitHub/flask-python34/app/app.py",
 		"/Users/yux/Documents/GitHub/you-get-api/flask/app/static/s/style.css",
 		"/Users/yux/Documents/GitHub/you-get-api/flask/app/templates/s.html",
 		"/Users/yux/Documents/GitHub/you-get-api/flask/app/netease.py",
@@ -350,7 +339,7 @@
 	],
 	"find":
 	{
-		"height": 70.0
+		"height": 28.0
 	},
 	"find_in_files":
 	{
@@ -396,74 +385,14 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "netease.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 10839,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								9941,
-								9941
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 17.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "main.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4028,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4027,
-								4027
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 70.0
+		"height": 28.0
 	},
 	"input":
 	{
@@ -505,7 +434,7 @@
 		"height": 156.0
 	},
 	"pinned_build_system": "",
-	"project": "you-get-api.sublime-project",
+	"project": "163music.sublime-project",
 	"replace":
 	{
 		"height": 52.0

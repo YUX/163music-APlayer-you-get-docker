@@ -129,8 +129,7 @@ def netease_lyric_download(rid):
     return lyric
 
 def netease_search(s):
-    print("apple")
-    t1 = time.time()
+    #t1 = time.time()
     sj = session.post("http://music.163.com/api/search/get/",{"s":s, "limit":100, "sub":"false", "type":1,"offset":0}, headers={"Referer": "http://music.163.com/"})
     aj = session.post("http://music.163.com/api/search/get/",{"s":s, "limit":100, "sub":"false", "type":10,"offset":0}, headers={"Referer": "http://music.163.com/"})
     pj = session.post("http://music.163.com/api/search/get/",{"s":s, "limit":100, "sub":"false", "type":1000,"offset":0}, headers={"Referer": "http://music.163.com/"})
@@ -141,8 +140,8 @@ def netease_search(s):
     pjr = pj.result().json()
     mjr = mj.result().json()
     rjr = rj.result().json()
-    t2 = time.time()
-    print(t2-t1)
+    #t2 = time.time()
+    #print(t2-t1)
     songs_info = []
     albums_info = []
     playlists_info = []
@@ -276,4 +275,3 @@ def api_v2(genre,s,qlrc):
             return netease_cloud_music("song",song_search(s,1)[0]["song_id"],qlrc)
     else:
         return netease_cloud_music(genre,s,0)
-
