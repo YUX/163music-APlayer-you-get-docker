@@ -2,5 +2,5 @@
 venv/*
 .DS_Store
 *.pyc
-.sublime-project
-.sublime-workspace
+*.sublime-project
+*.sublime-workspace
