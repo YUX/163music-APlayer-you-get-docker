@@ -114,4 +114,4 @@ def player():
 
 	return render_template("aplayer.html",songs_info=songs_info,title=title,showlrc=showlrc)
 if __name__ == "__main__":
-    app.run(debug=True,port=5003)
+    app.run()
