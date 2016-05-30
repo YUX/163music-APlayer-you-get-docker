@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html >
+   <head>
+      <meta charset="UTF-8">
+      <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='s/style.css') }}">
+      <title>{{s}}</title>
+   </head>
+   <body>
+      <!-- TAB CONTROLLERS -->
+
+      <input style="display:none" id="panel-1-ctrl"
+         class="panel-radios" type="radio" name="tab-radios" checked>
+      <input style="display:none" id="panel-2-ctrl"
+         class="panel-radios" type="radio" name="tab-radios">
+      <input style="display:none" id="panel-3-ctrl"
+         class="panel-radios" type="radio" name="tab-radios">
+      <input style="display:none" id="panel-4-ctrl"
+         class="panel-radios" type="radio" name="tab-radios">
+      <input style="display:none" id="panel-5-ctrl"
+         class="panel-radios" type="radio" name="tab-radios">
+      <input style="display:none" id="nav-ctrl"
+         class="panel-radios" type="checkbox" name="nav-checkbox">
+
+      <header id="introduction">
+         <h1>"{{s}}"</h1>
+      </header>
+      <!-- TABS LIST -->
+      <ul id="tabs-list">
+         <!-- MENU TOGGLE -->
+         <label id="open-nav-label" for="nav-ctrl"></label>
+         <li id="li-for-panel-1">
+            <label class="panel-label"
+               for="panel-1-ctrl">歌曲</label>
+         </li>
+         <!--INLINE-BLOCK FIX
+            -->
+         <li id="li-for-panel-2">
+            <label class="panel-label"
+               for="panel-2-ctrl">专辑</label>
+         </li>
+         <!--INLINE-BLOCK FIX
+            -->
+         <li id="li-for-panel-3">
+            <label class="panel-label"
+               for="panel-3-ctrl">歌单</label>
+         </li>
+         <!--INLINE-BLOCK FIX
+            -->
+         <li id="li-for-panel-4">
+            <label class="panel-label"
+               for="panel-4-ctrl">MV</label>
+         </li>
+         <!--INLINE-BLOCK FIX
+            -->
+         <li id="li-for-panel-5" class="last">
+            <label class="panel-label"
+               for="panel-5-ctrl">电台</label>
+         </li>
+         <label id="close-nav-label" for="nav-ctrl">Close</label>
+      </ul>
+      <!-- THE PANELS -->
+      <article id="panels">
+         <div class="container">
+            <section id="panel-1">
+            	<main>
+            	{% for song_info in songs_info %}
+            	<div class='name'>
+            		<a href="/player?song={{song_info["song_id"]}}">
+            			<h1>{{song_info["name"]}} - 『{{song_info["album"]}}』- {{song_info["artist"]}}</h1>
+            		</a>
+            	</div>
+               	{% endfor %}
+               </main>
+            </section>
+            <section id="panel-2">
+               <main>
+                  {% for album_info in albums_info %}
+            	<div class='name'>
+            		<a href="/player?album={{album_info["album_id"]}}">
+            			<h1>{{album_info["name"]}} - {{album_info["artist"]}}</h1>
+            		</a>
+            	</div>
+               	{% endfor %}
+               </main>
+            </section>
+            <section id="panel-3">
+               <main>
+                  {% for playlist_info in playlists_info %}
+            	<div class='name'>
+            		<a href="/player?playlist={{playlist_info["playlist_id"]}}">
+            			<h1>{{playlist_info["name"]}}({{playlist_info["trackCount"]}}) by {{playlist_info["creator"]}}</h1>
+            		</a>
+            	</div>
+               	{% endfor %}
+               </main>
+            </section>
+            <section id="panel-4">
+               <main>
+                  {% for mv_info in mvs_info %}
+            	<div class='name'>
+            		<a href="/player?mv={{mv_info["mv_id"]}}">
+            			<h1>{{mv_info["name"]}} - {{mv_info["artist"]}}</h1>
+            		</a>
+            	</div>
+               	{% endfor %}
+               </main>
+            </section>
+            <section id="panel-5">
+               <main>
+                  {% for radio_info in radios_info %}
+            	<div class='name'>
+            		<a href="/player?radio={{radio_info["radio_id"]}}">
+            			<h1>{{radio_info["name"]}} - {{radio_info["dj"]}}</h1>
+            		</a>
+            	</div>
+               	{% endfor %}
+               </main>
+            </section>
+         </div>
+      </article>
+   </body>
+</html>

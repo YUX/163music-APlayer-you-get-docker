@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <title>{{title}}</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='APlayer.min.css') }}">
+      <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+      <style>
+         body {
+         font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+         }
+         .container {
+         max-width: 32rem;
+         margin-left: auto;
+         margin-right: auto;
+         margin-bottom: 50px;
+         }
+         h1 {
+         font-size: 54px;
+         color: #333;
+         margin: 30px 0 10px;
+         }
+         h2 {
+         font-size: 22px;
+         color: #555;
+         }
+         h3 {
+         font-size: 24px;
+         color: #555;
+         }
+         hr {
+         display: block;
+         width: 7rem;
+         height: 1px;
+         margin: 2.5rem 0;
+         background-color: #eee;
+         border: 0;
+         }
+         a {
+         color: #08c;
+         text-decoration: none;
+         }
+         p {
+         font-size: 18px;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="container" style="margin-top:130px">
+         <div id="player" class="aplayer"></div>
+      </div>
+      <script src="{{ url_for('static', filename='APlayer.min.js') }}"></script>
+      <script>
+         var ap = new APlayer({
+             element: document.getElementById('player'),
+             narrow: false,
+             autoplay: true,
+             showlrc: {{showlrc}},
+             mutex: true,
+             theme: '#615754',
+             music: [
+                 {% for song_info in songs_info %}
+                 {
+                     title: '{{ song_info["title"] }}',
+                     author: '{{song_info["artist"]}}',
+                     url: '{{song_info["url_best"]}}',
+                     pic: '{{song_info["pic_url"]}}',
+                     lrc: '{{ song_info["lyric"] }}',
+                 },
+                 {% endfor %}
+             ]
+         });
+         ap.init();
+      </script>
+   </body>
+</html>

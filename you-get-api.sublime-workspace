@@ -1,0 +1,554 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"re",
+				"result	function"
+			],
+			[
+				"net",
+				"netease_search	function"
+			],
+			[
+				"ste",
+				"session_test	function"
+			],
+			[
+				"if",
+				"ifmain	if __name__ == '__main__'"
+			],
+			[
+				"song",
+				"song_info	statement"
+			],
+			[
+				"song_",
+				"song_info"
+			],
+			[
+				"pla",
+				"playlist_info	statement"
+			],
+			[
+				"pl",
+				"playlist_info	statement"
+			],
+			[
+				"album",
+				"album_info"
+			],
+			[
+				"api_",
+				"api_info"
+			],
+			[
+				"el",
+				"else	keyword"
+			],
+			[
+				"Re",
+				"Response	class"
+			],
+			[
+				"api",
+				"api_info	statement"
+			],
+			[
+				"gen",
+				"genre	statement"
+			],
+			[
+				"meth",
+				"method"
+			],
+			[
+				"me",
+				"methods"
+			],
+			[
+				"ra",
+				"radio_search	function"
+			],
+			[
+				"mv",
+				"mv_search	function"
+			],
+			[
+				"play",
+				"playlist"
+			],
+			[
+				"al",
+				"album_search	function"
+			],
+			[
+				"son",
+				"songs_info"
+			],
+			[
+				"fo",
+				"from"
+			],
+			[
+				"mi",
+				"mv_info	statement"
+			],
+			[
+				"u",
+				"url_best	statement"
+			],
+			[
+				"songs",
+				"songs_info	statement"
+			],
+			[
+				"pi",
+				"playlist_id	statement"
+			],
+			[
+				"l",
+				"lyric"
+			],
+			[
+				"p",
+				"playlist_id	statement"
+			],
+			[
+				"ai",
+				"album_info	statement"
+			],
+			[
+				"s",
+				"song_info"
+			],
+			[
+				"n",
+				"netease_cloud_music	function"
+			],
+			[
+				"si",
+				"song_info	statement"
+			],
+			[
+				"su",
+				"song_url"
+			],
+			[
+				"ar",
+				"args"
+			],
+			[
+				"non",
+				"None	instance"
+			],
+			[
+				"abl",
+				"album_name	statement"
+			],
+			[
+				"pint",
+				"print"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "netease.py",
+			"settings":
+			{
+				"buffer_size": 10839,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "main.py",
+			"settings":
+			{
+				"buffer_size": 4028,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Anaconda Python Builder",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				],
+				[
+					"Packages/User/node.sublime-build",
+					""
+				]
+			],
+			[
+				"Anaconda Python Builder",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				],
+				[
+					"Packages/User/node.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 354.0,
+		"last_filter": "pcrm",
+		"selected_items":
+		[
+			[
+				"pcrm",
+				"Package Control: Remove Package"
+			],
+			[
+				"pcl",
+				"Package Control: List Packages"
+			],
+			[
+				"pci",
+				"Package Control: Install Package"
+			],
+			[
+				"pcrp",
+				"Package Control: Remove Package"
+			],
+			[
+				"pcr",
+				"Package Control: Remove Package"
+			],
+			[
+				"git p",
+				"Git: Push"
+			],
+			[
+				"git ",
+				"Git: Commit"
+			],
+			[
+				"git al",
+				"Git: Add All"
+			],
+			[
+				"git inor",
+				"Git: Update Project Ignored Files"
+			],
+			[
+				"git c",
+				"Git: Commit"
+			],
+			[
+				"git ad",
+				"Git: Add All"
+			],
+			[
+				"pc",
+				"Package Control: Remove Package"
+			],
+			[
+				"git st",
+				"Git: Show Tags"
+			]
+		],
+		"width": 556.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/yux/Documents/GitHub/you-get-api/flask/app",
+		"/Users/yux/Documents/GitHub/you-get-api/flask/app/static",
+		"/Users/yux/Documents/GitHub/you-get-api/flask/app/static/s",
+		"/Users/yux/Documents/GitHub/you-get-api/flask/app/templates"
+	],
+	"file_history":
+	[
+		"/Users/yux/Documents/GitHub/you-get-api/flask/app/static/s/style.css",
+		"/Users/yux/Documents/GitHub/you-get-api/flask/app/templates/s.html",
+		"/Users/yux/Documents/GitHub/you-get-api/flask/app/netease.py",
+		"/Users/yux/Documents/GitHub/you-get-api/flask/app/main.py",
+		"/Users/yux/Documents/GitHub/you-get-api/flask/app/templates/index.html",
+		"/Users/yux/Documents/GitHub/you-get-api/flask/app/static/s/s.html",
+		"/Users/yux/Documents/GitHub/you-get-api/flask/app/templates/aplayer.html",
+		"/Users/yux/Documents/GitHub/you-get-api/flask/app/templates/dplayer.html",
+		"/Users/yux/Documents/GitHub/you-get-api/flask/app/static/DPlayer.min.css",
+		"/Users/yux/Documents/GitHub/you-get-api/flask/app/static/stats.min.js",
+		"/Users/yux/Documents/GitHub/you-get-api/flask/app/static/DPlayer.min.js",
+		"/Users/yux/Documents/GitHub/you-get-api/flask/app/templates/album.html",
+		"/Users/yux/Documents/GitHub/you-get-api/flask/app/index.html",
+		"/Users/yux/Documents/GitHub/you-get-api/flask/app/templates/playlist.html",
+		"/Users/yux/Documents/GitHub/you-get-api/flask/app/you-get-api.sublime-project",
+		"/Users/yux/Documents/GitHub/you-get-api/flask/app/templates/song.html",
+		"/Users/yux/Library/Application Support/Sublime Text 3/Packages/Anaconda/Anaconda.sublime-settings",
+		"/Users/yux/Desktop/you-get-develop/you-get-develop.sublime-project",
+		"/Users/yux/Library/Application Support/Sublime Text 3/Packages/User/Anaconda.sublime-settings",
+		"/Users/yux/Documents/GitHub/163music-APlayer-you-get-docker/flask/app/main2.py",
+		"/Users/yux/Desktop/acrcloud_sdk_python-master/mac/x86-64/test.py",
+		"/Users/yux/Documents/GitHub/163music-APlayer-you-get-docker/flask/app/main.py",
+		"/Users/yux/Documents/GitHub/163music-APlayer-you-get-docker/flask/app/app.sublime-project",
+		"/Users/yux/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/Users/yux/Library/Application Support/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/Users/yux/Library/Application Support/Sublime Text 3/Packages/User/Python.sublime-settings",
+		"/Users/yux/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/yux/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/yux/Dropbox/Playground/JS/playground.js",
+		"/Users/yux/Documents/Bitbucket/api/flask/app/playground.py",
+		"/Users/yux/Documents/Bitbucket/api/flask/app/app.sublime-project",
+		"/Users/yux/Documents/Bitbucket/api/flask/app/main.py",
+		"/Users/yux/Dropbox/Playground/Python/pg.py",
+		"/Users/yux/Library/Application Support/Sublime Text 3/Packages/User/untitled.sublime-build",
+		"/Users/yux/Downloads/HackerNews-React-Native-master/package.json",
+		"/Users/yux/Desktop/ReactNativeNews/index.ios.js",
+		"/Users/yux/Dropbox/.surge.conf",
+		"/Users/yux/Downloads/SSEncrypt.module",
+		"/Users/yux/.ssh/id_rsa.pub"
+	],
+	"find":
+	{
+		"height": 70.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"print",
+			"pring",
+			"print",
+			"lyrics",
+			"lyric",
+			"lyrics",
+			"lyric",
+			"netease_cloud_music_download",
+			"url",
+			"netease_song_download",
+			"[]]",
+			"make",
+			"linter",
+			"re",
+			"material_theme_tree_headings"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "netease.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10839,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9941,
+								9941
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 17.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "main.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4028,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4027,
+								4027
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 70.0
+	},
+	"input":
+	{
+		"height": 66.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 362.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 156.0
+	},
+	"pinned_build_system": "",
+	"project": "you-get-api.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 168.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
