@@ -45,7 +45,10 @@ The arguments are:
 - genre=[album|playlist|song|program|radio|mv]
 - qlrc=[0|1] for song only
 
-
+### Screenshot
+![](http://ww1.sinaimg.cn/large/863bb56fgw1f4fwm41wcyj20oh09jglq.jpg)
+![](http://ww3.sinaimg.cn/large/863bb56fgw1f4fwnc0pmjj20ig060t90.jpg)
+![](http://ww3.sinaimg.cn/large/863bb56fgw1f4fwovrg9sj20m70cdtai.jpg)
 
 ## What's new on version beta 4
 
