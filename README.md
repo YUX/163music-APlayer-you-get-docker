@@ -17,8 +17,8 @@ The front-end is folked from [No JS: Tabs that scale down to menu](http://codepe
 
 ### iframe
 Demos:
-- [https://music.daoapp.io/iframe?song=287749&qssl=1&qlrc=1&qnarrow=false&max_width=50%&autoplay=1](https://music.daoapp.io/iframe?song=287749&qssl=1&qlrc=1&qnarrow=false&max_width=50%&autoplay=1)
-- [https://music.daoapp.io/iframe?song=287749&qnarrow=true&qssl=1](https://music.daoapp.io/iframe?song=287749&qnarrow=true&qssl=1)
+- [https://music.daoapp.io/iframe?song=287749&qssl=1&qlrc=1&qnarrow=0&max_width=50%&autoplay=1](https://music.daoapp.io/iframe?song=287749&qssl=1&qlrc=1&qnarrow=0&max_width=50%&autoplay=1)
+- [https://music.daoapp.io/iframe?song=287749&qnarrow=1&qssl=1](https://music.daoapp.io/iframe?song=287749&qnarrow=1&qssl=1)
 
 URL: http(s)://music.daoapp.io/  Donot use HTTPS if it's not necessary. But if you do, don't forget set qssl to 1.
 Method: GET
