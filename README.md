@@ -1,4 +1,51 @@
 # 163music-APlayer-you-get BETA5 init
+## Yes! it's Beta5 now!......what's new?
+> I just rewrote everything.
+
+- This project now moved to Python-3.5.1. You may pull a docker image from [yuxio/flask-python351](https://hub.docker.com/r/yuxio/flask-python351/) to play with.
+- Now the back-end search requests is asynchronous. Thanks to [requests-futures](https://github.com/ross/requests-futures). It's like at least 5 times faster than normal python-requests
+- And there is the second version of API for getting music info.
+- I tried to use [DPlayer](https://github.com/DIYgod/DPlayer) - a lovely HTML5 danmaku video player🍭, there is a [demo](http://diygod.github.io/DPlayer/demo), but it seems the MV from 163Music has a Referer test or something to block it. It's too bad.⌇●﹏●⌇ It might be fixed by a fake-referer from a JavaScript of Dplayer or I don't know. It's very cool when I tested it locally. I tried to add a proxy from my server back-end, it works but it takes too much bandwidth. DaoCloud would kill me for that.
+- The music player is always [APlayer](http://aplayer.js.org/) by [DIYgod](https://www.anotherhome.net/).
+- Add Radio.
+- All the API of 163Music are from [you-get](https://you-get.org/). Use it if you want to download songs of videos.
+- Tout est mieux ٩(ˊᗜˋ*)و
+
+### The web interface
+[https://music.daoapp.io/](https://music.daoapp.io/)
+The front-end is folked from [No JS: Tabs that scale down to menu](No JS: Tabs that scale down to menu) and [http://codepen.io/siwicki/pen/FHkwu](http://codepen.io/siwicki/pen/FHkwu). I want somebody to teach me how to do those magic sometime
+
+### iframe
+Demos:
+- [https://music.daoapp.io/iframe?song=287749&qssl=1&qlrc=1&qnarrow=false&max_width=50%&autoplay=1](https://music.daoapp.io/iframe?song=287749&qssl=1&qlrc=1&qnarrow=false&max_width=50%&autoplay=1)
+- [https://music.daoapp.io/iframe?song=287749&qnarrow=true](https://music.daoapp.io/iframe?song=287749&qnarrow=true)
+
+URL: http(s)://music.daoapp.io/  Donot use HTTPS if it's not necessary.
+Method: GET
+The arguments are:
+- album_id
+- playlist_id
+- song_id
+- program_id
+- radio_id
+- mv_id
+- qssl=[0|1]
+- qlrc=[0|1]
+- qnarrow=[false|true]
+- max_width=[100%|32rem|400px|something else]
+- autoplay=[false|true]
+
+You must choose one of those six ids. And it means nothing if you choose more than one of them. You may use [The web interface](https://music.daoapp.io/) to find the id or use 163Music.
+
+### API-V2
+URL: https://music.daoapp.io//api/v2
+Method: POST
+The arguments are:
+- s=[album_id|playlist_id|song_id|program_id|radio_id|mv_id]
+- genre=[album|playlist|song|program|radio|mv]
+- qlrc=[0|1] for song only
+
+
 
 ## What's new on version beta 4
 

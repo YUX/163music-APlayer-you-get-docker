@@ -78,7 +78,10 @@ def ssl(code):
 	CHUNK_SIZE = 2048
 	r = requests.get(url, headers={"Referer": "http://music.163.com/"}, stream=True)
 	headers = r.raw.headers.items()
-	headers[-2] = ("Content-Type","audio/mpeg; charset=UTF-8")
+	if code[-4:] == "mp3":
+		headers[-2] = ("Content-Type","audio/mpeg; charset=UTF-8")
+	else:
+		pass
 	def generate():
 		for chunk in r.iter_content(CHUNK_SIZE):
 			yield chunk
@@ -159,6 +162,10 @@ def iframe():
 	else:
 		pass
 		
+	if autoplay is None:
+		autoplay = "true"
+	else:
+		pass
 	if album_id is not None:
 		album_info = netease.netease_cloud_music("album",album_id,0)
 		songs_info = album_info["songs_info"]
@@ -175,6 +182,7 @@ def iframe():
 		songs_info = [song_info]
 		if qssl == "1":
 			songs_info[0]["url_best"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["url_best"].encode()).decode()+".mp3"
+			songs_info[0]["pic_url"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["pic_url"].encode()).decode()+".jpg"
 		else:
 			pass
 		showlrc = qlrc
@@ -196,7 +204,7 @@ def iframe():
 	else:
 		abort(404)
 
-	return render_template("aplayer_iframe.html",songs_info=songs_info,title=title,showlrc=showlrc,qnarrow=qnarrow,max_width=max_width,song_id=song_id)
+	return render_template("aplayer_iframe.html",songs_info=songs_info,title=title,showlrc=showlrc,qnarrow=qnarrow,max_width=max_width,song_id=song_id,autoplay=autoplay)
 
 if __name__ == "__main__":
     app.run()
