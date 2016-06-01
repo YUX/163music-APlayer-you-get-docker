@@ -31,9 +31,9 @@ The arguments are:
 - mv=mv_id
 - qssl=[0|1]
 - qlrc=[0|1]
-- qnarrow=[false|true]
+- qnarrow=[0|1]
 - max_width=[100%|32rem|400px|something else]
-- autoplay=[false|true]
+- autoplay=[0|1]
 
 You must choose ONE of those six ids. And it means nothing if you choose more than one of them. You may use [The web interface](https://music.daoapp.io/) to find the id or use 163Music.
 

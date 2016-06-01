@@ -147,45 +147,60 @@ def netease_search(s):
     playlists_info = []
     mvs_info = []
     radios_info = []
-    for i in sjr["result"]["songs"]:
-        if i["status"] < 0:
-            pass
-        else:
-            song_info = {}
-            song_info["song_id"] = i["id"]
-            song_info["name"] = i["name"]
-            song_info["album"] = i["album"]["name"]
-            song_info["album_id"] = i["album"]["id"]
-            song_info["artist"] = i["artists"][0]["name"]
-            songs_info.append(song_info)
-    for i in ajr["result"]["albums"]:
-        if i["status"] < 0:
-            pass
-        else:
-            album_info = {}
-            album_info["album_id"] = i["id"]
-            album_info["name"] = i["name"]
-            album_info["artist"] = i["artists"][0]["name"]
-            albums_info.append(album_info)
-    for i in pjr["result"]["playlists"]:
-        playlist_info = {}
-        playlist_info["playlist_id"] = i["id"]
-        playlist_info["name"] = i["name"]
-        playlist_info["trackCount"] = i["trackCount"]
-        playlist_info["creator"] = i["creator"]["nickname"]
-        playlists_info.append(playlist_info)
-    for i in mjr["result"]["mvs"]:
-        mv_info = {}
-        mv_info["mv_id"] = i["id"]
-        mv_info["name"] = i["name"]
-        mv_info["artist"] = i["artists"][0]["name"]
-        mvs_info.append(mv_info)
-    for i in rjr["result"]["djRadios"]:
-        radio_info = {}
-        radio_info["radio_id"] = i["id"]
-        radio_info["name"] = i["name"]
-        radio_info["dj"] = i["dj"]["nickname"]
-        radios_info.append(radio_info)
+    try:
+        for i in sjr["result"]["songs"]:
+            if i["status"] < 0:
+                pass
+            else:
+                song_info = {}
+                song_info["song_id"] = i["id"]
+                song_info["name"] = i["name"]
+                song_info["album"] = i["album"]["name"]
+                song_info["album_id"] = i["album"]["id"]
+                song_info["artist"] = i["artists"][0]["name"]
+                songs_info.append(song_info)
+    except:
+        pass
+    try:
+        for i in ajr["result"]["albums"]:
+            if i["status"] < 0:
+                pass
+            else:
+                album_info = {}
+                album_info["album_id"] = i["id"]
+                album_info["name"] = i["name"]
+                album_info["artist"] = i["artists"][0]["name"]
+                albums_info.append(album_info)
+    except:
+        pass
+    try:
+        for i in pjr["result"]["playlists"]:
+            playlist_info = {}
+            playlist_info["playlist_id"] = i["id"]
+            playlist_info["name"] = i["name"]
+            playlist_info["trackCount"] = i["trackCount"]
+            playlist_info["creator"] = i["creator"]["nickname"]
+            playlists_info.append(playlist_info)
+    except:
+        pass
+    try:
+        for i in mjr["result"]["mvs"]:
+            mv_info = {}
+            mv_info["mv_id"] = i["id"]
+            mv_info["name"] = i["name"]
+            mv_info["artist"] = i["artists"][0]["name"]
+            mvs_info.append(mv_info)
+    except:
+        pass
+    try:
+        for i in rjr["result"]["djRadios"]:
+            radio_info = {}
+            radio_info["radio_id"] = i["id"]
+            radio_info["name"] = i["name"]
+            radio_info["dj"] = i["dj"]["nickname"]
+            radios_info.append(radio_info)
+    except:
+        pass
     return [songs_info,albums_info,playlists_info,mvs_info,radios_info]
 
 
