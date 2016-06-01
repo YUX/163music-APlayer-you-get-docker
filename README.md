@@ -8,19 +8,19 @@
 - I tried to use [DPlayer](https://github.com/DIYgod/DPlayer) - a lovely HTML5 danmaku video player🍭, there is a [demo](http://diygod.github.io/DPlayer/demo), but it seems the MV from 163Music has a Referer test or something to block it. It's too bad.⌇●﹏●⌇ It might be fixed by a fake-referer from a JavaScript of Dplayer or I don't know. It's very cool when I tested it locally. I tried to add a proxy from my server back-end, it works but it takes too much bandwidth. DaoCloud would kill me for that.
 - The music player is always [APlayer](http://aplayer.js.org/) by [DIYgod](https://www.anotherhome.net/).
 - Add Radio.
-- All the API of 163Music are from [you-get](https://you-get.org/). Use it if you want to download songs of videos.
+- All the APIs of 163Music are from [you-get](https://you-get.org/). Use it if you want to download songs of videos.
 - Tout est mieux ٩(ˊᗜˋ*)و
 
 ### The web interface
 [https://music.daoapp.io/](https://music.daoapp.io/)
-The front-end is folked from [No JS: Tabs that scale down to menu](No JS: Tabs that scale down to menu) and [http://codepen.io/siwicki/pen/FHkwu](http://codepen.io/siwicki/pen/FHkwu). I want somebody to teach me how to do those magic sometime
+The front-end is folked from [No JS: Tabs that scale down to menu](http://codepen.io/jakealbaugh/pen/KBsIo) and [Search Box](http://codepen.io/siwicki/pen/FHkwu). I want somebody to teach me how to do those magic sometime
 
 ### iframe
 Demos:
 - [https://music.daoapp.io/iframe?song=287749&qssl=1&qlrc=1&qnarrow=false&max_width=50%&autoplay=1](https://music.daoapp.io/iframe?song=287749&qssl=1&qlrc=1&qnarrow=false&max_width=50%&autoplay=1)
-- [https://music.daoapp.io/iframe?song=287749&qnarrow=true](https://music.daoapp.io/iframe?song=287749&qnarrow=true)
+- [https://music.daoapp.io/iframe?song=287749&qnarrow=true&qssl=1](https://music.daoapp.io/iframe?song=287749&qnarrow=true&qssl=1)
 
-URL: http(s)://music.daoapp.io/  Donot use HTTPS if it's not necessary.
+URL: http(s)://music.daoapp.io/  Donot use HTTPS if it's not necessary. But if you do, don't forget set qssl to 1.
 Method: GET
 The arguments are:
 - album_id
@@ -35,7 +35,7 @@ The arguments are:
 - max_width=[100%|32rem|400px|something else]
 - autoplay=[false|true]
 
-You must choose one of those six ids. And it means nothing if you choose more than one of them. You may use [The web interface](https://music.daoapp.io/) to find the id or use 163Music.
+You must choose ONE of those six ids. And it means nothing if you choose more than one of them. You may use [The web interface](https://music.daoapp.io/) to find the id or use 163Music.
 
 ### API-V2
 URL: https://music.daoapp.io//api/v2
