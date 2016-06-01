@@ -23,12 +23,12 @@ Demos:
 URL: http(s)://music.daoapp.io/  Donot use HTTPS if it's not necessary. But if you do, don't forget set qssl to 1.
 Method: GET
 The arguments are:
-- album_id
-- playlist_id
-- song_id
-- program_id
-- radio_id
-- mv_id
+- album=album_id
+- playlist=playlist_id
+- song=song_id
+- program=program_id
+- radio=radio_id
+- mv=mv_id
 - qssl=[0|1]
 - qlrc=[0|1]
 - qnarrow=[false|true]
