@@ -12,10 +12,8 @@ app = Flask(__name__)
 @app.route("/")
 def hello():
 	user_agent = parse(request.headers.get('User-Agent'))
-	if parse(request.headers.get('User-Agent')):
-		return render_template("index_mobile.html")
-	else:
-		return render_template("index.html")
+	qmobile = user_agent.is_mobile
+	return render_template("index.html",qmobile=qmobile)
 
 @app.route("/s",methods=['GET', 'POST'])
 def s():
