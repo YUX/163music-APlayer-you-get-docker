@@ -130,7 +130,7 @@ def player():
 	else:
 		abort(404)
 
-	return render_template("aplayer.html",songs_info=songs_info,title=title,showlrc=showlrc)
+	return render_template("aplayer.html",songs_info=songs_info,title=title,showlrc=showlrc,song_id=song_id)
 
 @app.route("/iframe",methods=['GET'])
 def iframe():
