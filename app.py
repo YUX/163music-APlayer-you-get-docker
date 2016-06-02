@@ -4,6 +4,7 @@ import netease
 import json
 import requests
 import base64
+from user_agents import parse
 from werkzeug.contrib.cache import SimpleCache
 cache = SimpleCache()
 app = Flask(__name__)
@@ -90,6 +91,7 @@ def ssl(code):
 
 @app.route("/player",methods=['GET'])
 def player():
+	user_agent = parse(request.headers.get('User-Agent'))
 	album_id = request.args.get("album")
 	playlist_id = request.args.get("playlist")
 	song_id = request.args.get("song")
@@ -130,7 +132,10 @@ def player():
 	else:
 		abort(404)
 
-	return render_template("aplayer.html",songs_info=songs_info,title=title,showlrc=showlrc,song_id=song_id)
+	if user_agent.is_mobile:
+		return render_template("aplayer_mobile.html",songs_info=songs_info,title=title,showlrc=showlrc,song_id=song_id)
+	else:
+		return render_template("aplayer.html",songs_info=songs_info,title=title,showlrc=showlrc,song_id=song_id)
 
 @app.route("/iframe",methods=['GET'])
 def iframe():
