@@ -11,7 +11,11 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return render_template("index.html")
+	user_agent = parse(request.headers.get('User-Agent'))
+	if parse(request.headers.get('User-Agent')):
+		return render_template("index_mobile.html")
+	else:
+		return render_template("index.html")
 
 @app.route("/s",methods=['GET', 'POST'])
 def s():
