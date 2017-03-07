@@ -2,8 +2,6 @@
 from flask import Flask, render_template, request, abort, redirect, Response, url_for
 import netease
 import json
-import requests
-import base64
 from werkzeug.contrib.cache import SimpleCache
 cache = SimpleCache()
 app = Flask(__name__)
@@ -71,22 +69,6 @@ def api_v2():
 		return Response(json.dumps(api_info, ensure_ascii=False),mimetype="application/json")
 	else:
 		return "WRONG"
-
-@app.route("/ssl/<path:code>")
-def ssl(code):
-	url = base64.urlsafe_b64decode(code[:-4]).decode()
-	CHUNK_SIZE = 2048
-	r = requests.get(url, headers={"Referer": "http://music.163.com/"}, stream=True)
-	headers = r.raw.headers.items()
-	if code[-4:] == "mp3":
-		headers[-2] = ("Content-Type","audio/mpeg; charset=UTF-8")
-	else:
-		pass
-	def generate():
-		for chunk in r.iter_content(CHUNK_SIZE):
-			yield chunk
-	return Response(generate(), headers = headers)
-
 
 @app.route("/player",methods=['GET'])
 def player():
