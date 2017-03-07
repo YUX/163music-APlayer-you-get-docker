@@ -208,7 +208,7 @@ def iframe():
 	else:
 		abort(404)
 
-	return render_template("aplayer_iframe.html",songs_info=songs_info,title=title,showlrc=showlrc,qnarrow=qnarrow,max_width=max_width,max_height=max_height,song_id=song_id,autoplay=autoplay)
+	return render_template("aplayer_iframe.html",songs_info=songs_info,title=title,showlrc=showlrc,qnarrow=qnarrow,max_width=max_width,max_height=max_height,song_id=song_id,autoplay=autoplay,mode=mode)
 
 if __name__ == "__main__":
     app.run()
