@@ -144,6 +144,7 @@ def iframe():
 	qlrc = request.args.get("qlrc")
 	qnarrow = request.args.get("qnarrow")
 	max_width = request.args.get("max_width")
+	max_height = request.args.get("max_height")
 	autoplay = request.args.get("autoplay")
 
 	if qnarrow is None:
