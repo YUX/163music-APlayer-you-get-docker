@@ -176,11 +176,21 @@ def iframe():
 	if album_id is not None:
 		album_info = netease.netease_cloud_music("album",album_id,0)
 		songs_info = album_info["songs_info"]
+		if qssl == "1":
+			songs_info[0]["url_best"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["url_best"].encode()).decode()+".mp3"
+			songs_info[0]["pic_url"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["pic_url"].encode()).decode()+".jpg"
+		else:
+			pass
 		title = "%s - %s" %(album_info["album"],album_info["artist"])
 		showlrc = "0"
 	elif playlist_id is not None:
 		playlist_info = netease.netease_cloud_music("playlist",playlist_id,0)
 		songs_info = playlist_info["songs_info"]
+		if qssl == "1":
+			songs_info[0]["url_best"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["url_best"].encode()).decode()+".mp3"
+			songs_info[0]["pic_url"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["pic_url"].encode()).decode()+".jpg"
+		else:
+			pass
 		title = playlist_info["playlist"]
 		showlrc = "0"
 	elif song_id is not None:
@@ -197,10 +207,20 @@ def iframe():
 		song_info = netease.netease_cloud_music("program",program_id,0)
 		title = song_info["album"]
 		songs_info = [song_info]
+		if qssl == "1":
+			songs_info[0]["url_best"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["url_best"].encode()).decode()+".mp3"
+			songs_info[0]["pic_url"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["pic_url"].encode()).decode()+".jpg"
+		else:
+			pass
 		showlrc = "0"
 	elif radio_id is not None:
 		songs_info = netease.netease_cloud_music("radio",radio_id,0)
 		title = songs_info[0]["artist"]
+		if qssl == "1":
+			songs_info[0]["url_best"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["url_best"].encode()).decode()+".mp3"
+			songs_info[0]["pic_url"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["pic_url"].encode()).decode()+".jpg"
+		else:
+			pass
 		showlrc = "0"
 	elif mv_id is not None:
 		mv_info = netease.netease_cloud_music("mv",mv_id,0)
