@@ -55,7 +55,7 @@
              mutex: true,
              theme: '#615754',
              mode: 'circulation',
-             listmaxheight: '365px',
+             listmaxheight: '{{max_height}}',
               {% if song_id == None %}
              music: [
                  {% for song_info in songs_info %}
