@@ -133,11 +133,7 @@ def player():
 		return render_template("dplayer.html",mv_url=mv_url,title=title,mv_id=mv_id,pic_url=pic_url)
 	else:
 		abort(404)
-
-	if user_agent.is_mobile:
-		return render_template("aplayer_mobile.html",songs_info=songs_info,title=title,showlrc=showlrc,song_id=song_id)
-	else:
-		return render_template("aplayer.html",songs_info=songs_info,title=title,showlrc=showlrc,song_id=song_id)
+	return render_template("aplayer.html",songs_info=songs_info,title=title,showlrc=showlrc,song_id=song_id)
 
 @app.route("/iframe",methods=['GET'])
 def iframe():
@@ -227,11 +223,11 @@ def iframe():
 		mv_url = mv_info["url_best"]
 		title = mv_info["title"]
 		pic_url = mv_info["pic_url"]
-		return render_template("dplayer_iframe.html",mv_url=mv_url,title=title,mv_id=mv_id,pic_url=pic_url,max_width=max_width)
+		return render_template("dplayer_iframe.html",mv_url=mv_url,title=title,mv_id=mv_id,pic_url=pic_url,max_width=max_width,max_height=max_height)
 	else:
 		abort(404)
 
-	return render_template("aplayer_iframe.html",songs_info=songs_info,title=title,showlrc=showlrc,qnarrow=qnarrow,max_width=max_width,song_id=song_id,autoplay=autoplay)
+	return render_template("aplayer_iframe.html",songs_info=songs_info,title=title,showlrc=showlrc,qnarrow=qnarrow,max_width=max_width,max_height=max_height,song_id=song_id,autoplay=autoplay)
 
 if __name__ == "__main__":
     app.run()
