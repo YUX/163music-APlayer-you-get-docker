@@ -220,7 +220,7 @@ def iframe():
 		mv_url = mv_info["url_best"]
 		title = mv_info["title"]
 		pic_url = mv_info["pic_url"]
-		return render_template("dplayer_iframe.html",mv_url=mv_url,title=title,mv_id=mv_id,pic_url=pic_url,max_width=max_width)
+		return render_template("dplayer_iframe.html",mv_url=mv_url,title=title,mv_id=mv_id,pic_url=pic_url,max_width=max_width,autoplay=autoplay)
 	else:
 		abort(404)
 
