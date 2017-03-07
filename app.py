@@ -2,8 +2,6 @@
 from flask import Flask, render_template, request, abort, redirect, Response, url_for
 import netease
 import json
-import requests
-import base64
 from werkzeug.contrib.cache import SimpleCache
 cache = SimpleCache()
 app = Flask(__name__)
@@ -71,21 +69,6 @@ def api_v2():
 		return Response(json.dumps(api_info, ensure_ascii=False),mimetype="application/json")
 	else:
 		return "WRONG"
-
-@app.route("/ssl/<path:code>")
-def ssl(code):
-	url = base64.urlsafe_b64decode(code[:-4]).decode()
-	CHUNK_SIZE = 2048
-	r = requests.get(url, headers={"Referer": "http://music.163.com/"}, stream=True)
-	headers = r.raw.headers.items()
-	if code[-4:] == "mp3":
-		headers[-2] = ("Content-Type","audio/mpeg; charset=UTF-8")
-	else:
-		pass
-	def generate():
-		for chunk in r.iter_content(CHUNK_SIZE):
-			yield chunk
-	return Response(generate(), headers = headers)
 
 @app.route("/player",methods=['GET'])
 def player():
@@ -171,8 +154,9 @@ def iframe():
 		album_info = netease.netease_cloud_music("album",album_id,0)
 		songs_info = album_info["songs_info"]
 		if qssl == "1":
-			songs_info[0]["url_best"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["url_best"].encode()).decode()+".mp3"
-			songs_info[0]["pic_url"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["pic_url"].encode()).decode()+".jpg"
+			for i in range(len(songs_info)):
+				songs_info[i]["url_best"].replace('http', 'https')
+				songs_info[i]["pic_url"].replace('http', 'https')
 		else:
 			pass
 		title = "%s - %s" %(album_info["album"],album_info["artist"])
@@ -181,8 +165,9 @@ def iframe():
 		playlist_info = netease.netease_cloud_music("playlist",playlist_id,0)
 		songs_info = playlist_info["songs_info"]
 		if qssl == "1":
-			songs_info[0]["url_best"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["url_best"].encode()).decode()+".mp3"
-			songs_info[0]["pic_url"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["pic_url"].encode()).decode()+".jpg"
+			for i in range(len(songs_info)):
+				songs_info[i]["url_best"].replace('http', 'https')
+				songs_info[i]["pic_url"].replace('http', 'https')
 		else:
 			pass
 		title = playlist_info["playlist"]
@@ -192,8 +177,9 @@ def iframe():
 		title = "%s - %s" %(song_info["title"],song_info["artist"])
 		songs_info = [song_info]
 		if qssl == "1":
-			songs_info[0]["url_best"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["url_best"].encode()).decode()+".mp3"
-			songs_info[0]["pic_url"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["pic_url"].encode()).decode()+".jpg"
+			for i in range(len(songs_info)):
+				songs_info[i]["url_best"].replace('http', 'https')
+				songs_info[i]["pic_url"].replace('http', 'https')
 		else:
 			pass
 		showlrc = qlrc
@@ -202,8 +188,9 @@ def iframe():
 		title = song_info["album"]
 		songs_info = [song_info]
 		if qssl == "1":
-			songs_info[0]["url_best"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["url_best"].encode()).decode()+".mp3"
-			songs_info[0]["pic_url"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["pic_url"].encode()).decode()+".jpg"
+			for i in range(len(songs_info)):
+				songs_info[i]["url_best"].replace('http', 'https')
+				songs_info[i]["pic_url"].replace('http', 'https')
 		else:
 			pass
 		showlrc = "0"
@@ -211,8 +198,9 @@ def iframe():
 		songs_info = netease.netease_cloud_music("radio",radio_id,0)
 		title = songs_info[0]["artist"]
 		if qssl == "1":
-			songs_info[0]["url_best"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["url_best"].encode()).decode()+".mp3"
-			songs_info[0]["pic_url"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["pic_url"].encode()).decode()+".jpg"
+			for i in range(len(songs_info)):
+				songs_info[i]["url_best"].replace('http', 'https')
+				songs_info[i]["pic_url"].replace('http', 'https')
 		else:
 			pass
 		showlrc = "0"
