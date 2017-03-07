@@ -129,27 +129,23 @@ def iframe():
 	max_height = request.args.get("max_height")
 	mode = request.args.get("mode")
 	autoplay = request.args.get("autoplay")
-
+	
 	if qnarrow is None:
 		qnarrow = "false"
 	else:
 		pass
-
 	if qlrc is None:
 		qlrc = "0"
 	else:
 		pass
-
 	if max_width is None:
 		max_width = "100%"
 	else:
 		pass
-	
 	if mode is None:
 		mode = "circulation"
 	else:
-		pass
-		
+		pass	
 	if autoplay is None:
 		autoplay = "true"
 	else:
