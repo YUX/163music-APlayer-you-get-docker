@@ -3,7 +3,6 @@
    <head>
       <meta charset="UTF-8">
       <title>{{title}}</title>
-      <link rel="stylesheet" href="static/APlayer.min.css">
       <link rel="shortcut icon" href="static/favicon.ico">
       <style>
          body {
@@ -58,6 +57,7 @@
              showlrc: {{showlrc}},
              mutex: true,
              theme: '#615754',
+             mode: 'circulation',
              {% if song_id == None %}
              music: [
                  {% for song_info in songs_info %}
