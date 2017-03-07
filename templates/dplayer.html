@@ -4,7 +4,6 @@
       <meta charset="UTF-8">
       <title>{{title}}</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="static/DPlayer.min.css">
       <link rel="shortcut icon" href="static/favicon.ico">
       <style>
          body {
@@ -52,11 +51,12 @@
          <div class="dplayer"></div>
       </div>
       <script src="static/stats.min.js"></script>
-      <script src="static/DPlayer.min.js"></script>
+      <script src="https://cdn.bootcss.com/dplayer/1.1.2/DPlayer.min.js"></script>
       <script>
          var dp = new DPlayer({
              element: document.getElementsByClassName('dplayer')[0],
              autoplay: false,
+             lang: 'zh',
              theme: '#FADFA3',
              loop: true,
              video: {
@@ -65,7 +65,7 @@
              },
              danmaku: {
                  id: '{{mv_id}}',
-                 api: 'https://dplayer.daoapp.io/',
+                 api: 'https://api.prprpr.me/dplayer/',
                  token: 'tokendemo',
                  maximum: 1000
              }
