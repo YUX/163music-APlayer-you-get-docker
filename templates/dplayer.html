@@ -48,12 +48,12 @@
    </head>
    <body>
       <div class="container">
-         <div class="dplayer"></div>
+         <div id="player" class="dplayer"></div>
       </div>
       <script src="https://cdn.bootcss.com/dplayer/1.1.2/DPlayer.min.js"></script>
       <script>
          var dp = new DPlayer({
-             element: document.getElementsByClassName('dplayer')[0],
+             element: document.getElementById('player'),
              autoplay: false,
              lang: 'zh',
              theme: '#FADFA3',
