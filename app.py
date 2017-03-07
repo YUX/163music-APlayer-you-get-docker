@@ -171,8 +171,8 @@ def iframe():
 		album_info = netease.netease_cloud_music("album",album_id,0)
 		songs_info = album_info["songs_info"]
 		if qssl == "1":
-			songs_info[0]["url_best"] = "/ssl/"+base64.urlsafe_b64encode(songs_info[0]["url_best"].encode()).decode()+".mp3"
-			songs_info[0]["pic_url"] = "/ssl/"+base64.urlsafe_b64encode(songs_info[0]["pic_url"].encode()).decode()+".jpg"
+			songs_info[0]["url_best"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["url_best"].encode()).decode()+".mp3"
+			songs_info[0]["pic_url"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["pic_url"].encode()).decode()+".jpg"
 		else:
 			pass
 		title = "%s - %s" %(album_info["album"],album_info["artist"])
@@ -181,8 +181,8 @@ def iframe():
 		playlist_info = netease.netease_cloud_music("playlist",playlist_id,0)
 		songs_info = playlist_info["songs_info"]
 		if qssl == "1":
-			songs_info[0]["url_best"] = "/ssl/"+base64.urlsafe_b64encode(songs_info[0]["url_best"].encode()).decode()+".mp3"
-			songs_info[0]["pic_url"] = "/ssl/"+base64.urlsafe_b64encode(songs_info[0]["pic_url"].encode()).decode()+".jpg"
+			songs_info[0]["url_best"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["url_best"].encode()).decode()+".mp3"
+			songs_info[0]["pic_url"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["pic_url"].encode()).decode()+".jpg"
 		else:
 			pass
 		title = playlist_info["playlist"]
@@ -192,8 +192,8 @@ def iframe():
 		title = "%s - %s" %(song_info["title"],song_info["artist"])
 		songs_info = [song_info]
 		if qssl == "1":
-			songs_info[0]["url_best"] = "/ssl/"+base64.urlsafe_b64encode(songs_info[0]["url_best"].encode()).decode()+".mp3"
-			songs_info[0]["pic_url"] = "/ssl/"+base64.urlsafe_b64encode(songs_info[0]["pic_url"].encode()).decode()+".jpg"
+			songs_info[0]["url_best"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["url_best"].encode()).decode()+".mp3"
+			songs_info[0]["pic_url"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["pic_url"].encode()).decode()+".jpg"
 		else:
 			pass
 		showlrc = qlrc
@@ -202,8 +202,8 @@ def iframe():
 		title = song_info["album"]
 		songs_info = [song_info]
 		if qssl == "1":
-			songs_info[0]["url_best"] = "/ssl/"+base64.urlsafe_b64encode(songs_info[0]["url_best"].encode()).decode()+".mp3"
-			songs_info[0]["pic_url"] = "/ssl/"+base64.urlsafe_b64encode(songs_info[0]["pic_url"].encode()).decode()+".jpg"
+			songs_info[0]["url_best"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["url_best"].encode()).decode()+".mp3"
+			songs_info[0]["pic_url"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["pic_url"].encode()).decode()+".jpg"
 		else:
 			pass
 		showlrc = "0"
@@ -211,8 +211,8 @@ def iframe():
 		songs_info = netease.netease_cloud_music("radio",radio_id,0)
 		title = songs_info[0]["artist"]
 		if qssl == "1":
-			songs_info[0]["url_best"] = "/ssl/"+base64.urlsafe_b64encode(songs_info[0]["url_best"].encode()).decode()+".mp3"
-			songs_info[0]["pic_url"] = "/ssl/"+base64.urlsafe_b64encode(songs_info[0]["pic_url"].encode()).decode()+".jpg"
+			songs_info[0]["url_best"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["url_best"].encode()).decode()+".mp3"
+			songs_info[0]["pic_url"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["pic_url"].encode()).decode()+".jpg"
 		else:
 			pass
 		showlrc = "0"
