@@ -4,16 +4,13 @@ import netease
 import json
 import requests
 import base64
-from user_agents import parse
 from werkzeug.contrib.cache import SimpleCache
 cache = SimpleCache()
 app = Flask(__name__)
 
 @app.route("/")
 def hello():
-	user_agent = parse(request.headers.get('User-Agent'))
-	qmobile = user_agent.is_mobile
-	return render_template("index.html",qmobile=qmobile)
+	return render_template("index.html")
 
 @app.route("/s",methods=['GET', 'POST'])
 def s():
@@ -93,7 +90,6 @@ def ssl(code):
 
 @app.route("/player",methods=['GET'])
 def player():
-	user_agent = parse(request.headers.get('User-Agent'))
 	album_id = request.args.get("album")
 	playlist_id = request.args.get("playlist")
 	song_id = request.args.get("song")
