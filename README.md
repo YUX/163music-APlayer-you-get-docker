@@ -1,5 +1,4 @@
-update
-
+🎃[Bug 修复和功能更新（解决积累的一些 issue](https://github.com/YUX-IO/163music-APlayer-you-get-docker/pull/12) by [Jackeriss](https://github.com/Jackeriss)
 
 # 163music-APlayer-you-get BETA5 init
 ## Yes! it's Beta5 now!......what's new?
