@@ -1,4 +1,6 @@
-update1
+update
+
+
 # 163music-APlayer-you-get BETA5 init
 ## Yes! it's Beta5 now!......what's new?
 > I just rewrote everything.
