@@ -177,9 +177,8 @@ def iframe():
 		title = "%s - %s" %(song_info["title"],song_info["artist"])
 		songs_info = [song_info]
 		if qssl == "1":
-			for i in range(len(songs_info)):
-				songs_info[i]["url_best"] = songs_info[i]["url_best"].replace('http', 'https')
-				songs_info[i]["pic_url"] = songs_info[i]["pic_url"].replace('http', 'https')
+			songs_info[0]["url_best"] = songs_info[0]["url_best"].replace('http', 'https')
+			songs_info[0]["pic_url"] = songs_info[0]["pic_url"].replace('http', 'https')
 		else:
 			pass
 		showlrc = qlrc
