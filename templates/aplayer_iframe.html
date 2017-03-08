@@ -3,7 +3,6 @@
    <head>
       <meta charset="UTF-8">
       <title>{{title}}</title>
-      <link rel="stylesheet" href="static/APlayer.min.css">
       <link rel="shortcut icon" href="static/favicon.ico">
       <style>
          body {
@@ -46,7 +45,7 @@
       <div class="container">
          <div id="player" class="aplayer"></div>
       </div>
-      <script src="static/APlayer.min.js"></script>
+      <script src="https://cdn.bootcss.com/aplayer/1.5.8/APlayer.min.js"></script>
       <script>
          var ap = new APlayer({
              element: document.getElementById('player'),
@@ -55,6 +54,8 @@
              showlrc: {{showlrc}},
              mutex: true,
              theme: '#615754',
+             mode: '{{mode}}',
+             listmaxheight: '{{max_height}}',
               {% if song_id == None %}
              music: [
                  {% for song_info in songs_info %}
@@ -76,9 +77,7 @@
                      lrc: '{{ songs_info[0]["lyric"] }}',
                  }
               {% endif %}
-
          });
-         ap.init();
       </script>
    </body>
 </html>

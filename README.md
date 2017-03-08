@@ -29,16 +29,18 @@ The arguments are:
 - program=program_id
 - radio=radio_id
 - mv=mv_id
-- qssl=[0|1]
-- qlrc=[0|1]
-- qnarrow=[0|1]
-- max_width=[100%|32rem|400px|something else]
-- autoplay=[0|1]
+- qssl=[0|1] default:0
+- qlrc=[0|1] default:0
+- qnarrow=[0|1] default:0
+- max_width=[100%|32rem|400px|something else] default:100%
+- max_height=[300px|something else] default:100%
+- autoplay=[0|1] default:1
+- mode=[random|single|circulation|order] default:circulation
 
 You must choose ONE of those six ids. And it means nothing if you choose more than one of them. You may use [The web interface](https://music.daoapp.io/) to find the id or use 163Music.
 
 ### API-V2
-URL: https://music.daoapp.io//api/v2
+URL: https://music.daoapp.io/api/v2
 Method: POST
 The arguments are:
 - s=[album_id|playlist_id|song_id|program_id|radio_id|mv_id]

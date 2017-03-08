@@ -2,18 +2,13 @@
 from flask import Flask, render_template, request, abort, redirect, Response, url_for
 import netease
 import json
-import requests
-import base64
-from user_agents import parse
 from werkzeug.contrib.cache import SimpleCache
 cache = SimpleCache()
 app = Flask(__name__)
 
 @app.route("/")
 def hello():
-	user_agent = parse(request.headers.get('User-Agent'))
-	qmobile = user_agent.is_mobile
-	return render_template("index.html",qmobile=qmobile)
+	return render_template("index.html")
 
 @app.route("/s",methods=['GET', 'POST'])
 def s():
@@ -75,25 +70,8 @@ def api_v2():
 	else:
 		return "WRONG"
 
-@app.route("/ssl/<path:code>")
-def ssl(code):
-	url = base64.urlsafe_b64decode(code[:-4]).decode()
-	CHUNK_SIZE = 2048
-	r = requests.get(url, headers={"Referer": "http://music.163.com/"}, stream=True)
-	headers = r.raw.headers.items()
-	if code[-4:] == "mp3":
-		headers[-2] = ("Content-Type","audio/mpeg; charset=UTF-8")
-	else:
-		pass
-	def generate():
-		for chunk in r.iter_content(CHUNK_SIZE):
-			yield chunk
-	return Response(generate(), headers = headers)
-
-
 @app.route("/player",methods=['GET'])
 def player():
-	user_agent = parse(request.headers.get('User-Agent'))
 	album_id = request.args.get("album")
 	playlist_id = request.args.get("playlist")
 	song_id = request.args.get("song")
@@ -133,11 +111,7 @@ def player():
 		return render_template("dplayer.html",mv_url=mv_url,title=title,mv_id=mv_id,pic_url=pic_url)
 	else:
 		abort(404)
-
-	if user_agent.is_mobile:
-		return render_template("aplayer_mobile.html",songs_info=songs_info,title=title,showlrc=showlrc,song_id=song_id)
-	else:
-		return render_template("aplayer.html",songs_info=songs_info,title=title,showlrc=showlrc,song_id=song_id)
+	return render_template("aplayer.html",songs_info=songs_info,title=title,showlrc=showlrc,song_id=song_id)
 
 @app.route("/iframe",methods=['GET'])
 def iframe():
@@ -152,23 +126,26 @@ def iframe():
 	qlrc = request.args.get("qlrc")
 	qnarrow = request.args.get("qnarrow")
 	max_width = request.args.get("max_width")
+	max_height = request.args.get("max_height")
+	mode = request.args.get("mode")
 	autoplay = request.args.get("autoplay")
-
+	
 	if qnarrow is None:
 		qnarrow = "false"
 	else:
 		pass
-
 	if qlrc is None:
 		qlrc = "0"
 	else:
 		pass
-
 	if max_width is None:
 		max_width = "100%"
 	else:
 		pass
-		
+	if mode is None:
+		mode = "circulation"
+	else:
+		pass	
 	if autoplay is None:
 		autoplay = "true"
 	else:
@@ -176,11 +153,23 @@ def iframe():
 	if album_id is not None:
 		album_info = netease.netease_cloud_music("album",album_id,0)
 		songs_info = album_info["songs_info"]
+		if qssl == "1":
+			for i in range(len(songs_info)):
+				songs_info[i]["url_best"] = songs_info[i]["url_best"].replace('http', 'https')
+				songs_info[i]["pic_url"] = songs_info[i]["pic_url"].replace('http', 'https')
+		else:
+			pass
 		title = "%s - %s" %(album_info["album"],album_info["artist"])
 		showlrc = "0"
 	elif playlist_id is not None:
 		playlist_info = netease.netease_cloud_music("playlist",playlist_id,0)
 		songs_info = playlist_info["songs_info"]
+		if qssl == "1":
+			for i in range(len(songs_info)):
+				songs_info[i]["url_best"] = songs_info[i]["url_best"].replace('http', 'https')
+				songs_info[i]["pic_url"] = songs_info[i]["pic_url"].replace('http', 'https')
+		else:
+			pass
 		title = playlist_info["playlist"]
 		showlrc = "0"
 	elif song_id is not None:
@@ -188,8 +177,8 @@ def iframe():
 		title = "%s - %s" %(song_info["title"],song_info["artist"])
 		songs_info = [song_info]
 		if qssl == "1":
-			songs_info[0]["url_best"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["url_best"].encode()).decode()+".mp3"
-			songs_info[0]["pic_url"] = "https://music.daoapp.io/ssl/"+base64.urlsafe_b64encode(songs_info[0]["pic_url"].encode()).decode()+".jpg"
+			songs_info[0]["url_best"] = songs_info[0]["url_best"].replace('http', 'https')
+			songs_info[0]["pic_url"] = songs_info[0]["pic_url"].replace('http', 'https')
 		else:
 			pass
 		showlrc = qlrc
@@ -197,21 +186,33 @@ def iframe():
 		song_info = netease.netease_cloud_music("program",program_id,0)
 		title = song_info["album"]
 		songs_info = [song_info]
+		if qssl == "1":
+			for i in range(len(songs_info)):
+				songs_info[i]["url_best"] = songs_info[i]["url_best"].replace('http', 'https')
+				songs_info[i]["pic_url"] = songs_info[i]["pic_url"].replace('http', 'https')
+		else:
+			pass
 		showlrc = "0"
 	elif radio_id is not None:
 		songs_info = netease.netease_cloud_music("radio",radio_id,0)
 		title = songs_info[0]["artist"]
+		if qssl == "1":
+			for i in range(len(songs_info)):
+				songs_info[i]["url_best"] = songs_info[i]["url_best"].replace('http', 'https')
+				songs_info[i]["pic_url"] = songs_info[i]["pic_url"].replace('http', 'https')
+		else:
+			pass
 		showlrc = "0"
 	elif mv_id is not None:
 		mv_info = netease.netease_cloud_music("mv",mv_id,0)
 		mv_url = mv_info["url_best"]
 		title = mv_info["title"]
 		pic_url = mv_info["pic_url"]
-		return render_template("dplayer_iframe.html",mv_url=mv_url,title=title,mv_id=mv_id,pic_url=pic_url,max_width=max_width)
+		return render_template("dplayer_iframe.html",mv_url=mv_url,title=title,mv_id=mv_id,pic_url=pic_url,max_width=max_width,autoplay=autoplay)
 	else:
 		abort(404)
 
-	return render_template("aplayer_iframe.html",songs_info=songs_info,title=title,showlrc=showlrc,qnarrow=qnarrow,max_width=max_width,song_id=song_id,autoplay=autoplay)
+	return render_template("aplayer_iframe.html",songs_info=songs_info,title=title,showlrc=showlrc,qnarrow=qnarrow,max_width=max_width,max_height=max_height,song_id=song_id,autoplay=autoplay,mode=mode)
 
 if __name__ == "__main__":
     app.run()
