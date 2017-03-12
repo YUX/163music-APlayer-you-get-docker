@@ -1,3 +1,5 @@
+- Move to Python 3.6.0 with [yuxio/flask-python360](https://hub.docker.com/r/yuxio/flask-python360/)
+
 🎃[Bug 修复和功能更新 解决积累的一些 issue](https://github.com/YUX-IO/163music-APlayer-you-get-docker/pull/12) by [Jackeriss](https://github.com/Jackeriss)  ----20170308
 
 # 163music-APlayer-you-get BETA5 init
