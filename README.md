@@ -64,8 +64,8 @@ The arguments are:
 - Paramètre
   - id (song_id)
   - search_type
-    - meta (song's infomation)
-    - meta_lrc (song's infomation with lyrics)
+    - meta (song's information)
+    - meta_lrc (song's information with lyrics)
     - audio **(The audio stream!!!!)**
     - image **(The album cover image stream!!!!)**
   - qssl=[0|1]
