@@ -1,10 +1,10 @@
 click==6.6
-Flask==0.11
+flask>=1.0.0
 itsdangerous==0.24
-Jinja2==2.8
+Jinja2>=2.10.1
 MarkupSafe==0.23
-PyYAML==3.11
-requests==2.10.0
+pyyaml>=4.2b1
+requests>=2.20.0
 requests-futures==0.9.7
 ua-parser==0.7.1
 user-agents==1.0.1
